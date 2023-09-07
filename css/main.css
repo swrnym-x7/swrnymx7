@@ -29,6 +29,9 @@ html {
 		font-size: 9.411764705882353px;
 	}
 }
+body{
+	cursor: none;
+}
 
 .circle {
 	height: 24px;
