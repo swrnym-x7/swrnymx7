@@ -1,4 +1,12 @@
+/**
 
+
+/** 
+ * ===================================================================
+ * 01. webfonts and iconfonts - (_document-setup.scss)
+ *
+ * ------------------------------------------------------------------- 
+ */
 @import url("fonts.css");
 @import url("font-awesome/css/font-awesome.min.css");
 @import url("micons/micons.css");
@@ -36,7 +44,6 @@ body {
 body{
 	cursor: none;
 }
-
 .circle {
 	height: 24px;
 	width: 24px;
@@ -64,18 +71,7 @@ body {
  * links - (_document-setup.scss)
  * -------------------------------------------------------------------
  */
-a, a:visited {
-	color: #000000;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-a:hover, a:focus, a:active {
-	color: #FF0077;
-	outline: 0;
-}
+
 
 /** 
  * ===================================================================
@@ -90,6 +86,8 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	text-rendering: optimizeLegibility;
 	margin-bottom: 2.1rem;
 }
+
+
 h3, .h03, h4, .h04 {
 	margin-bottom: 1.8rem;
 }
