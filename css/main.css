@@ -18,6 +18,13 @@
  *
  * ------------------------------------------------------------------- 
  */
+
+@media screen and (max-width: 768px) {
+  /* Hide the animated cursor on mobile devices */
+  cursor: none;
+}
+
+
 html {
 	font-size: 10px;
 }
