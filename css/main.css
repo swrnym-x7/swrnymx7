@@ -60,7 +60,7 @@ body{
 	top: 0;
 	left: 0;
 	pointer-events: none;
-	z-index: 99999999; /* so that it stays on top of all other elements */
+	z-index: 99999999; 
   }
 
 html, body {
@@ -74,18 +74,6 @@ body {
 	color: #6e6e6e;
 }
 
-/**
- * links - (_document-setup.scss)
- * -------------------------------------------------------------------
- */
-
-
-/** 
- * ===================================================================
- * 03. typography & general theme styles - (_document-setup.scss)
- *
- * ------------------------------------------------------------------- 
- */
 h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	font-family: "poppins-semibold", sans-serif;
 	color: #313131;
@@ -303,10 +291,7 @@ dd {
 	margin: 0 0 0 2rem;
 }
 
-/**
- * tables - (_document-setup.scss)  
- * -------------------------------------------------------------------
- */
+
 table {
 	border-width: 0;
 	width: 100%;
