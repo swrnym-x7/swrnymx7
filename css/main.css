@@ -30,7 +30,13 @@ html {
 }
 body {
     overflow-x: hidden;
+}@media (max-width: 768px) {
+  .circle {
+    cursor: auto; /* Show the default cursor on mobile devices */
+  }
 }
+
+
 @media (max-width: 768px) {
   .circle{
     display: none;
