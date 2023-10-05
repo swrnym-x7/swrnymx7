@@ -2600,22 +2600,21 @@ footer .copyright span:last-child::after {
 	display: none;
 }
 #go-top a {
-	text-decoration: none;
-	border: 0 none;
-	display: block;
-	height: 6.6rem;
-	width: 6rem;
-	line-height: 6.6rem;
-	text-align: center;
-	background: #cc005f;
-	color: #FFFFFF;
-	text-align: center;
-	text-transform: uppercase;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
+	    width: 4rem; 
+    height: 4rem;
+    border-radius: 50%; 
+    background: #cc005f;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 4rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 #go-top a i {
 	font-size: 1.6rem;
