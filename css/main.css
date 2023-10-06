@@ -2600,9 +2600,9 @@ footer .copyright span:last-child::after {
 	display: none;
 }
 #go-top a {
-	    width: 4rem; 
-    height: 4rem;
-    border-radius: 50%; 
+    width: 4rem; /* Adjust the width as needed */
+    height: 4rem; /* Adjust the height as needed */
+    border-radius: 50%; /* Makes it a circle */
     background: #cc005f;
     color: #FFFFFF;
     text-align: center;
