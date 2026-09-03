@@ -2569,19 +2569,31 @@ h1.display {
 	will-change: transform;
 }
 .scroll-line-container {
-	width: 100%;
-	max-image-width: 600px;
-	margin: 15px 0 30px 0;
+  width: 100%;
+  max-image-width: 600px;
+  margin: 15px 0 30px 0;
 }
 
 .growing-line {
-	width: 100%;
-	height: auto;
-	overflow: visible;
+  width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
 .line-path {
-	stroke-dasharray: 600;
-	stroke-dashoffset: 600; /* Starts completely hidden */
-	transition: stroke-dashoffset 0.1s ease-out; /* Smooth scrubbing effect */
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600; /* Starts completely hidden */
+  transition: stroke-dashoffset 0.1s ease-out; /* Smooth scrubbing effect */
+}
+.loader-top {
+  width: 100%;
+  text-align: center; /* Centers the text inside */
+  display: flex;
+  justify-content: center; /* Centers the container flex content if applicable */
+  align-items: center;
+}
+
+.loader-top span {
+  display: inline-block;
+  text-align: center;
 }
