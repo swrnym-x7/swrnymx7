@@ -900,3 +900,25 @@ document.addEventListener("DOMContentLoaded", () => {
 		);
 	}
 });
+document.addEventListener("scroll", () => {
+	const linePath = document.querySelector(".line-path");
+	if (!linePath) return;
+
+	// Calculate how far down the page the user has scrolled
+	const scrollTotal =
+		document.documentElement.scrollHeight -
+		document.documentElement.clientHeight;
+	const currentScroll = window.scrollY;
+
+	// Convert scroll percentage (0 to 1)
+	const scrollProgress = Math.min(
+		Math.max(currentScroll / (scrollTotal * 0.3), 0),
+		1,
+	);
+
+	// Total length of the SVG path is roughly 600
+	const pathLength = 600;
+
+	// Adjust dash offset so it draws from left to right on scroll
+	linePath.style.strokeDashoffset = pathLength - scrollProgress * pathLength;
+});

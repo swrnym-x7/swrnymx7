@@ -2568,3 +2568,20 @@ h1.display {
 	animation: smoothFloat 3s ease-in-out infinite;
 	will-change: transform;
 }
+.scroll-line-container {
+	width: 100%;
+	max-image-width: 600px;
+	margin: 15px 0 30px 0;
+}
+
+.growing-line {
+	width: 100%;
+	height: auto;
+	overflow: visible;
+}
+
+.line-path {
+	stroke-dasharray: 600;
+	stroke-dashoffset: 600; /* Starts completely hidden */
+	transition: stroke-dashoffset 0.1s ease-out; /* Smooth scrubbing effect */
+}
