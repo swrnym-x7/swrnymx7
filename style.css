@@ -2553,3 +2553,18 @@ p.ec-institution::-moz-selection {
 	color: #ffffff; /* Flips text color for crisp contrast */
 	transform: translateY(-2px); /* Optional subtle float lift */
 }
+@keyframes smoothFloat {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+	}
+}
+
+/* Applying the floating effect straight to your existing class */
+h1.display {
+	animation: smoothFloat 3s ease-in-out infinite;
+	will-change: transform;
+}
