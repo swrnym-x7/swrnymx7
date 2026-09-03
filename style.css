@@ -2569,31 +2569,184 @@ h1.display {
 	will-change: transform;
 }
 .scroll-line-container {
-  width: 100%;
-  max-image-width: 600px;
-  margin: 15px 0 30px 0;
+	width: 100%;
+	max-image-width: 600px;
+	margin: 15px 0 30px 0;
 }
 
 .growing-line {
-  width: 100%;
-  height: auto;
-  overflow: visible;
+	width: 100%;
+	height: auto;
+	overflow: visible;
 }
 
 .line-path {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600; /* Starts completely hidden */
-  transition: stroke-dashoffset 0.1s ease-out; /* Smooth scrubbing effect */
+	stroke-dasharray: 600;
+	stroke-dashoffset: 600; /* Starts completely hidden */
+	transition: stroke-dashoffset 0.1s ease-out; /* Smooth scrubbing effect */
 }
 .loader-top {
-  width: 100%;
-  text-align: center; /* Centers the text inside */
-  display: flex;
-  justify-content: center; /* Centers the container flex content if applicable */
-  align-items: center;
+	width: 100%;
+	text-align: center; /* Centers the text inside */
+	display: flex;
+	justify-content: center; /* Centers the container flex content if applicable */
+	align-items: center;
 }
 
 .loader-top span {
-  display: inline-block;
-  text-align: center;
+	display: inline-block;
+	text-align: center;
+}
+/* About Section Main Layout */
+.about-section {
+	padding: 80px 0;
+	color: #111111;
+}
+
+/* Typography & Contrast Adjustments */
+.about-section h2 {
+	font-size: 3rem;
+	font-weight: 700;
+	letter-spacing: -1.5px;
+	color: #0b0b0b;
+}
+
+.about-section .greeting {
+	font-family: monospace;
+	font-size: 0.9rem;
+	letter-spacing: 1.5px;
+	color: #6c5ce7;
+	text-transform: uppercase;
+	margin-bottom: 12px;
+}
+
+.about-section p {
+	color: #2b2b2b; /* Darker charcoal for crisp readability and high contrast */
+	font-size: 1.05rem;
+	line-height: 1.7;
+	font-weight: 400;
+}
+
+.about-section p span.italic-accent {
+	font-style: italic;
+	color: #6c5ce7;
+	font-family: serif; /* Matches your header serif style */
+}
+
+/* Enhanced Bento Cards with Better Depth & Contrast */
+.bento-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+	width: 100%;
+}
+
+.bento-card {
+	background: #f7f5ef; /* Slightly warm contrasted card base */
+	border: 1px solid rgba(17, 17, 17, 0.12); /* Sharper border contrast */
+	border-radius: 0px; /* Maintains your strict geometric design system */
+	padding: 24px;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+	border-color: #6c5ce7;
+	box-shadow: 0 8px 30px rgba(108, 92, 231, 0.12);
+	transform: translateY(-2px);
+}
+
+.bento-main {
+	grid-column: span 2;
+}
+
+.bento-tag {
+	font-size: 10px;
+	color: #6c5ce7;
+	letter-spacing: 2px;
+	font-family: monospace;
+	font-weight: 600;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.bento-card h3 {
+	color: #111111;
+	font-size: 1.35rem;
+	font-weight: 600;
+	margin-bottom: 8px;
+	letter-spacing: -0.5px;
+}
+
+.bento-card p {
+	color: #444444;
+	font-size: 0.95rem;
+	line-height: 1.5;
+}
+
+/* Skill Tags & Badges Contrast */
+.tech-badges span,
+.about-section .pill-tag {
+	background: #ffffff;
+	border: 1px solid rgba(17, 17, 17, 0.15);
+	color: #1a1a1a;
+	font-size: 0.8rem;
+	padding: 6px 12px;
+	border-radius: 0px;
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+
+.tech-badges span:hover,
+.about-section .pill-tag:hover {
+	border-color: #6c5ce7;
+	color: #6c5ce7;
+	background: rgba(108, 92, 231, 0.04);
+}
+
+/* Telemetry Status Line */
+.status-live {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: #111111 !important;
+	font-family: monospace;
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	margin-top: 8px;
+}
+
+.pulse-dot {
+	width: 8px;
+	height: 8px;
+	background: #6c5ce7;
+	border-radius: 50%;
+	box-shadow: 0 0 10px #6c5ce7;
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.3;
+		transform: scale(0.85);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+	.bento-grid {
+		grid-template-columns: 1fr;
+	}
+	.bento-main {
+		grid-column: span 1;
+	}
 }

@@ -935,19 +935,3 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
-document.addEventListener("DOMContentLoaded", () => {
-	const glitchAudio = document.getElementById("glitchAudio");
-
-	if (glitchAudio) {
-		glitchAudio.volume = 0.5; // Adjust volume (0.0 to 1.0) if needed
-
-		// Wait 1 second (1000 milliseconds) before attempting to play
-		setTimeout(() => {
-			glitchAudio.play().catch(error => {
-				// Browsers sometimes block autoplay if the user hasn't interacted with the page yet,
-				// this catch prevents console errors if that happens.
-				console.log("Autoplay was prevented by browser policy:", error);
-			});
-		}, 1000); // 1000ms = 1 second delay
-	}
-});
