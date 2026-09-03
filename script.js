@@ -922,3 +922,32 @@ document.addEventListener("scroll", () => {
 	// Adjust dash offset so it draws from left to right on scroll
 	linePath.style.strokeDashoffset = pathLength - scrollProgress * pathLength;
 });
+document.addEventListener("DOMContentLoaded", () => {
+	const glitchAudio = document.getElementById("glitchAudio");
+
+	if (glitchAudio) {
+		// Attempt to play the audio immediately on load
+		glitchAudio.volume = 1; // Adjust volume (0.0 to 1.0) if needed
+		glitchAudio.play().catch(error => {
+			// Browsers sometimes block autoplay if the user hasn't interacted with the page yet,
+			// this catch prevents console errors if that happens.
+			console.log("Autoplay was prevented by browser policy:", error);
+		});
+	}
+});
+document.addEventListener("DOMContentLoaded", () => {
+	const glitchAudio = document.getElementById("glitchAudio");
+
+	if (glitchAudio) {
+		glitchAudio.volume = 0.5; // Adjust volume (0.0 to 1.0) if needed
+
+		// Wait 1 second (1000 milliseconds) before attempting to play
+		setTimeout(() => {
+			glitchAudio.play().catch(error => {
+				// Browsers sometimes block autoplay if the user hasn't interacted with the page yet,
+				// this catch prevents console errors if that happens.
+				console.log("Autoplay was prevented by browser policy:", error);
+			});
+		}, 1000); // 1000ms = 1 second delay
+	}
+});
