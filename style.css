@@ -627,6 +627,11 @@ footer {
 	display: block;
 	object-fit: contain;
 }
+@media (max-width: 960px) {
+	.about-photo {
+		display: none;
+	}
+}
 
 /* =========================================================
 
@@ -2521,4 +2526,30 @@ p.ec-institution::-moz-selection {
 	pointer-events: none;
 	z-index: 99999; /* Set this higher than your loader's z-index */
 	/* ... rest of your cursor styles */
+}
+/* Stack pill tags base layout */
+.stack {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.stack span {
+	display: inline-block;
+	padding: 8px 18px;
+	border-radius: 50px;
+	font-size: 14px;
+	border: 1px solid #e0e0e0;
+	background-color: #ffffff;
+	color: #333333;
+	cursor: pointer;
+	transition: all 0.25s ease-in-out;
+}
+
+/* Hover state using your secondary purple (#6c5ce7) */
+.stack span:hover {
+	background-color: #6c5ce7; /* Secondary accent color */
+	border-color: #6c5ce7; /* Matches border to secondary */
+	color: #ffffff; /* Flips text color for crisp contrast */
+	transform: translateY(-2px); /* Optional subtle float lift */
 }
