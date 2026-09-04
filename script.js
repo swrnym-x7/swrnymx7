@@ -935,3 +935,41 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+document.addEventListener("DOMContentLoaded", () => {
+	const contactPath = document.querySelector(".contact-line-path");
+
+	if (contactPath) {
+		try {
+			const pathLength = contactPath.getTotalLength();
+
+			// Initially hide the line completely
+			contactPath.style.strokeDasharray = pathLength;
+			contactPath.style.strokeDashoffset = pathLength;
+
+			window.addEventListener("scroll", () => {
+				const contactSection = document.getElementById("contact");
+				if (!contactSection) return;
+
+				const rect = contactSection.getBoundingClientRect();
+				const windowHeight = window.innerHeight;
+
+				// Trigger when the contact section enters the viewport
+				if (rect.top <= windowHeight && rect.bottom >= 0) {
+					const scrollProgress =
+						(windowHeight - rect.top) /
+						(windowHeight + rect.height);
+					const clampedProgress = Math.min(
+						Math.max(scrollProgress, 0),
+						1,
+					);
+
+					// Animate the line drawing smoothly on scroll
+					contactPath.style.strokeDashoffset =
+						pathLength - pathLength * clampedProgress;
+				}
+			});
+		} catch (e) {
+			contactPath.style.strokeDashoffset = 0;
+		}
+	}
+});
