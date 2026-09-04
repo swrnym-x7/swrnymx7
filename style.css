@@ -2750,34 +2750,3 @@ h1.display {
 		grid-column: span 1;
 	}
 }
-
-/* Ensures the text group hugs the text width properly */
-.cta-text-group {
-	display: inline-block;
-	text-align: left;
-}
-
-/* Matches the exact width of whatever is inside .cta-text-group */
-.scroll-line-container {
-	width: 100%;
-	margin-top: 15px;
-	margin-bottom: 30px;
-}
-
-.growing-line {
-	width: 100%;
-	height: auto;
-	display: block;
-}
-
-.contact-line-path {
-	will-change: stroke-dashoffset;
-}
-.scroll-line-container {
-	width: 100%;
-	margin-top: -25px;
-	margin-bottom: 30px;
-	transform: translateX(
-		195px
-	); /* Increase or decrease this number (e.g., 20px, 60px) to slide it right */
-}
