@@ -2750,3 +2750,24 @@ h1.display {
 		grid-column: span 1;
 	}
 }
+/* Force all form inputs, text inputs, and their placeholders to align strictly to the left on mobile and desktop */
+.inline-contact-form input,
+.inline-contact-form textarea,
+.inline-contact-form .message-group input {
+	text-align: left !important;
+	direction: ltr !important;
+}
+
+/* Specifically target the placeholder text alignment */
+.inline-contact-form input::placeholder,
+.inline-contact-form textarea::placeholder {
+	text-align: left !important;
+}
+
+/* Ensure the input wrapper itself doesn't center its children */
+.inline-contact-form .input-group,
+.inline-contact-form .message-group {
+	display: block !important;
+	width: 100% !important;
+	text-align: left !important;
+}
