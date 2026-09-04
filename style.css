@@ -1,5 +1,4 @@
 :root {
-	
 	--graphite-950: #f7f5ee; /* warm ivory background */
 	--graphite-850: #ffffff; /* white surfaces */
 	--graphite-700: #e7e3da; /* soft borders */
@@ -497,7 +496,7 @@ section {
 	margin-top: 20px;
 }
 .stack span {
-	font-family: "Fraunces", italic;
+	font-family: "helvetica";
 	font-size: 11px;
 	border: 1px solid var(--graphite-600);
 	padding: 7px 12px;
