@@ -1,5 +1,5 @@
 :root {
-	--graphite-950: #f7f5ee; /* warm ivory background */
+	--graphite-950: #fafafa; /* warm ivory background */
 	--graphite-850: #ffffff; /* white surfaces */
 	--graphite-700: #e7e3da; /* soft borders */
 	--graphite-600: #d7d2c8; /* stronger borders */
@@ -51,6 +51,34 @@ header {
 	align-items: center;
 	padding: 28px 48px;
 	mix-blend-mode: difference;
+}
+header {
+	background-color: #fafafa !important;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 28px 48px;
+
+	/* Glassmorphism styling */
+	background-color: rgba(
+		250,
+		250,
+		250,
+		0.75
+	) !important; /* Semi-transparent off-white */
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Optional subtle frosted edge */
 }
 .mark {
 	font-family: "Fraunces", serif;
@@ -2641,7 +2669,7 @@ h1.display {
 }
 
 .bento-card {
-	background: #f7f5ef; /* Slightly warm contrasted card base */
+	background: #fafafa; /* Slightly warm contrasted card base */
 	border: 1px solid rgba(17, 17, 17, 0.12); /* Sharper border contrast */
 	border-radius: 0px; /* Maintains your strict geometric design system */
 	padding: 24px;
