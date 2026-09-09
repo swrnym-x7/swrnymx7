@@ -2798,3 +2798,59 @@ h1.display {
 	width: 100% !important;
 	text-align: left !important;
 }
+.orbit-center {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+
+	/* Glowing gradient using your exact #8b70f4 purple color */
+	background: radial-gradient(
+		circle,
+		rgba(139, 112, 244, 0.3) 0%,
+		rgba(139, 112, 244, 0.05) 60%,
+		transparent 100%
+	);
+	filter: blur(10px);
+	-webkit-filter: blur(10px);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* Keeps the live clock perfectly crisp and centered right on top */
+.live-clock-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-family: monospace;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 5;
+}
+
+#deviceTime {
+	font-size: 1.15rem;
+	font-weight: 600;
+	color: #111111;
+	letter-spacing: 1px;
+	white-space: nowrap;
+}
+
+.clock-label {
+	font-size: 0.6rem;
+	color: #8b70f4; /* Updated to match your exact secondary color */
+	letter-spacing: 2px;
+	margin-top: 4px;
+	white-space: nowrap;
+}

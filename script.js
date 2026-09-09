@@ -935,3 +935,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+function updateDeviceTime() {
+	const now = new Date();
+
+	// Format hours, minutes, and seconds with leading zeros
+	const hours = String(now.getHours()).padStart(2, "0");
+	const minutes = String(now.getMinutes()).padStart(2, "0");
+	const seconds = String(now.getSeconds()).padStart(2, "0");
+
+	const timeString = `${hours}:${minutes}:${seconds}`;
+
+	const clockElement = document.getElementById("deviceTime");
+	if (clockElement) {
+		clockElement.textContent = timeString;
+	}
+}
+
+// Run immediately and update every second
+updateDeviceTime();
+setInterval(updateDeviceTime, 1000);
