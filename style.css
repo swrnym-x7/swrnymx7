@@ -2859,3 +2859,86 @@ h1.display {
 	line-height: 1.5;
 	margin-top: 8px;
 }
+#scroll-kinetic-section {
+	width: 100%;
+	height: 10vh; /* Reduced runway so "Selected Work" appears much sooner */
+	position: relative;
+	background-color: #fafafa;
+}
+
+.kinetic-container {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.kinetic-paragraph {
+	max-width: 900px;
+	width: 90%;
+	text-align: center;
+	font-size: clamp(2rem, 4vw, 3.5rem);
+	line-height: 1.4;
+	font-weight: 400;
+	color: #1a1a1a;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.3em 0.4em;
+}
+
+.word {
+	display: inline-block;
+	will-change: transform, opacity, filter;
+}
+/* Secondary color highlight underline that grows from left to right */
+.word.highlight-word {
+	position: relative;
+}
+
+.word.highlight-word::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 2px;
+	width: 100%;
+	height: 4px; /* Thickness of the underline */
+	background-color: #8b70f4; /* Your secondary accent color */
+	border-radius: 2px;
+	transform-origin: left; /* Forces it to grow from left to right */
+	transform: scaleX(
+		var(--underline-scale, 0)
+	); /* Controlled smoothly by JS */
+	will-change: transform;
+}
+/* Change cursor and add a subtle interactive highlight on word hover */
+.word {
+	display: inline-block;
+	will-change: transform, opacity, filter;
+	cursor: pointer; /* Changes the cursor to a pointer on hover */
+	transition: color 0.3s ease;
+}
+
+/* Optional: Slight color shift on hover to make it feel extra responsive */
+.word:hover {
+	color: #8b70f4; /* Matches your secondary accent color */
+}
+#scroll-kinetic-section {
+	width: 100%;
+	height: 200vh; /* Extended runway like the reference site for a slower, cinematic reveal */
+	position: relative;
+	background-color: #fafafa;
+}
+
+.kinetic-container {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}

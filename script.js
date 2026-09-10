@@ -954,3 +954,121 @@ function updateDeviceTime() {
 // Run immediately and update every second
 updateDeviceTime();
 setInterval(updateDeviceTime, 1000);
+
+document.addEventListener("DOMContentLoaded", () => {
+	const section = document.getElementById("scroll-kinetic-section");
+	const words = section.querySelectorAll(".word");
+
+	window.addEventListener("scroll", () => {
+		const rect = section.getBoundingClientRect();
+		const sectionHeight = section.offsetHeight - window.innerHeight;
+
+		// Natural, smooth progress mapping across the 130vh runway
+		let progress = -rect.top / sectionHeight;
+		progress = Math.max(0, Math.min(1, progress)); // Clamp between 0 and 1
+
+		words.forEach(word => {
+			const targetX = parseFloat(word.getAttribute("data-x"));
+			const targetY = parseFloat(word.getAttribute("data-y"));
+			const targetScale = parseFloat(word.getAttribute("data-scale"));
+			const targetBlur = parseFloat(word.getAttribute("data-blur"));
+
+			const currentX = targetX * (1 - progress);
+			const currentY = targetY * (1 - progress);
+			const currentScale = 1 + (targetScale - 1) * (1 - progress);
+			const currentBlur = targetBlur * (1 - progress);
+			const currentOpacity = 0.15 + 0.85 * progress;
+
+			word.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+			word.style.opacity = currentOpacity;
+			word.style.filter = `blur(${currentBlur}px)`;
+		});
+	});
+});
+document.addEventListener("DOMContentLoaded", () => {
+	const section = document.getElementById("scroll-kinetic-section");
+	const words = section.querySelectorAll(".word");
+
+	window.addEventListener("scroll", () => {
+		const rect = section.getBoundingClientRect();
+		const sectionHeight = section.offsetHeight - window.innerHeight;
+
+		let rawProgress = -rect.top / sectionHeight;
+		rawProgress = Math.max(0, Math.min(1, rawProgress));
+
+		// Smooth progress mapping that leaves a brief lock at the very end
+		let progress = rawProgress / 0.92;
+		progress = Math.max(0, Math.min(1, progress));
+
+		words.forEach(word => {
+			const targetX = parseFloat(word.getAttribute("data-x"));
+			const targetY = parseFloat(word.getAttribute("data-y"));
+			const targetScale = parseFloat(word.getAttribute("data-scale"));
+			const targetBlur = parseFloat(word.getAttribute("data-blur"));
+
+			const currentX = targetX * (1 - progress);
+			const currentY = targetY * (1 - progress);
+			const currentScale = 1 + (targetScale - 1) * (1 - progress);
+			const currentBlur = targetBlur * (1 - progress);
+			const currentOpacity = 0.15 + 0.85 * progress;
+
+			word.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+			word.style.opacity = currentOpacity;
+			word.style.filter = `blur(${currentBlur}px)`;
+
+			// Delayed underline growth starting from progress 0.4
+			if (word.classList.contains("highlight-word")) {
+				let underlineProgress = 0;
+				if (progress > 0.4) {
+					underlineProgress = (progress - 0.4) / 0.6;
+					underlineProgress = Math.min(1, underlineProgress);
+				}
+				word.style.setProperty("--underline-scale", underlineProgress);
+			}
+		});
+	});
+});
+document.addEventListener("DOMContentLoaded", () => {
+	const section = document.getElementById("scroll-kinetic-section");
+	const words = section.querySelectorAll(".word");
+
+	window.addEventListener("scroll", () => {
+		const rect = section.getBoundingClientRect();
+		const sectionHeight = section.offsetHeight - window.innerHeight;
+
+		let rawProgress = -rect.top / sectionHeight;
+		rawProgress = Math.max(0, Math.min(1, rawProgress));
+
+		// Map the animation to complete in the first 75% of the scroll,
+		// leaving the last 25% pinned/locked at the final state.
+		let progress = rawProgress / 0.75;
+		progress = Math.max(0, Math.min(1, progress));
+
+		words.forEach(word => {
+			const targetX = parseFloat(word.getAttribute("data-x"));
+			const targetY = parseFloat(word.getAttribute("data-y"));
+			const targetScale = parseFloat(word.getAttribute("data-scale"));
+			const targetBlur = parseFloat(word.getAttribute("data-blur"));
+
+			const currentX = targetX * (1 - progress);
+			const currentY = targetY * (1 - progress);
+			const currentScale = 1 + (targetScale - 1) * (1 - progress);
+			const currentBlur = targetBlur * (1 - progress);
+			const currentOpacity = 0.15 + 0.85 * progress;
+
+			word.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+			word.style.opacity = currentOpacity;
+			word.style.filter = `blur(${currentBlur}px)`;
+
+			// Underline growth starts after the text starts clearing up (progress > 0.4)
+			if (word.classList.contains("highlight-word")) {
+				let underlineProgress = 0;
+				if (progress > 0.4) {
+					underlineProgress = (progress - 0.4) / 0.6;
+					underlineProgress = Math.min(1, underlineProgress);
+				}
+				word.style.setProperty("--underline-scale", underlineProgress);
+			}
+		});
+	});
+});
