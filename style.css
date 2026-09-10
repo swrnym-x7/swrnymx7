@@ -342,6 +342,12 @@ section {
 	width: 100%;
 	overflow: hidden;
 	padding: 34px 0 54px;
+	/* Your existing horizontal layout styles (e.g., display: flex, overflow-x: auto) */
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	/* FIX: Tells the browser to allow both horizontal panning AND let the page pan vertically when user scrolls down */
+	touch-action: pan-x pan-y;
 }
 .work-grid {
 	display: flex;
