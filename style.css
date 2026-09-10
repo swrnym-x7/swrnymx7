@@ -2663,6 +2663,11 @@ h1.display {
 }
 
 /* Enhanced Bento Cards with Better Depth & Contrast */
+
+.bento-grid,
+.bento-grid * {
+	font-family: inherit;
+}
 .bento-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
