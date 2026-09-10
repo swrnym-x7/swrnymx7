@@ -1028,3 +1028,29 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 });
+document.addEventListener("DOMContentLoaded", () => {
+	// 1. Live Footer Clock
+	const clockSpan = document.getElementById("footer-clock");
+	if (clockSpan) {
+		function updateClock() {
+			const now = new Date();
+			clockSpan.textContent = now.toLocaleTimeString([], {
+				hour: "2-digit",
+				minute: "2-digit",
+			});
+		}
+		updateClock();
+		setInterval(updateClock, 1000);
+	}
+
+	// 2. Smooth Scroll Back to Top Button
+	const topBtn = document.getElementById("backToTopBtn");
+	if (topBtn) {
+		topBtn.addEventListener("click", () => {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+		});
+	}
+});
