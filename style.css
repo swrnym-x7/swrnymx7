@@ -2825,3 +2825,37 @@ h1.display {
 	pointer-events: none;
 	z-index: 1;
 }
+/* Apply your main site font family to all bento card content */
+.bento-card,
+.bento-card h3,
+.bento-card p,
+.bento-card span {
+	font-family: inherit; /* Inherits your global professional font */
+}
+
+/* Style the technical labels to match your editorial theme cleanly */
+.bento-card .sys-tag,
+.bento-card [class*="//"] {
+	font-family: monospace; /* Keep monospace ONLY for tiny system codes */
+	font-size: 0.7rem;
+	color: #8b70f4;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+}
+
+/* Style the main bento card titles to match your elegant headings */
+.bento-card h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #111111;
+	margin-top: 6px;
+	letter-spacing: -0.01em;
+}
+
+/* Style the bento card body description text */
+.bento-card p {
+	font-size: 0.9rem;
+	color: #555555;
+	line-height: 1.5;
+	margin-top: 8px;
+}
