@@ -342,12 +342,6 @@ section {
 	width: 100%;
 	overflow: hidden;
 	padding: 34px 0 54px;
-	/* Your existing horizontal layout styles (e.g., display: flex, overflow-x: auto) */
-	overflow-x: auto;
-	overflow-y: hidden;
-
-	/* FIX: Tells the browser to allow both horizontal panning AND let the page pan vertically when user scrolls down */
-	touch-action: pan-x pan-y;
 }
 .work-grid {
 	display: flex;
@@ -3072,4 +3066,15 @@ h1.display {
 	.word {
 		opacity: 0.2; /* Subtle dim state instead of fully visible */
 	}
+}
+#workList {
+	/* Ensure it acts as a smooth horizontal scroller */
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	/* FIX: Tells mobile touch gestures they are allowed to pan both horizontally and vertically */
+	touch-action: pan-x pan-y;
+
+	/* Prevents rubber-banding scroll-chaining issues on mobile containers */
+	overscroll-behavior-x: contain;
 }
