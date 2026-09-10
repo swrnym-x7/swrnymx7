@@ -2988,3 +2988,82 @@ h1.display {
 	transition: color 0.3s ease;
 	backface-visibility: hidden; /* Prevents blurry box rendering artifacts on mobile GPUs */
 }
+/* =========================================================
+   5. SECTIONS & KINETIC SCROLL (MOBILE FIX)
+   ========================================================= */
+#scroll-kinetic-section {
+	width: 100%;
+	height: 150vh;
+	position: relative;
+	background-color: #fafafa;
+}
+
+.kinetic-container {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden; /* Changed from visible to prevent overflow clipping issues */
+	background: transparent;
+}
+
+.kinetic-paragraph {
+	max-width: 900px;
+	width: 90%;
+	text-align: center;
+	font-size: clamp(1.8rem, 4vw, 3.5rem);
+	line-height: 1.4;
+	font-weight: 400;
+	color: #1a1a1a;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.2em 0.3em;
+	background: transparent;
+}
+
+.word {
+	display: inline-Item;
+	will-change: transform, opacity, filter;
+	cursor: pointer;
+	transition: color 0.3s ease;
+	backface-visibility: hidden;
+
+	/* FIX: Set initial state so text isn't fully opaque/visible before JS loads/scrolls */
+	opacity: 0.15;
+	filter: blur(4px);
+}
+
+.word:hover {
+	color: #8b70f4;
+}
+
+.word.highlight-word {
+	position: relative;
+}
+
+.word.highlight-word::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 2px;
+	width: 100%;
+	height: 4px;
+	background-color: #8b70f4;
+	border-radius: 2px;
+	transform-origin: left;
+	transform: scaleX(var(--underline-scale, 0));
+	will-change: transform;
+}
+
+/* Optional mobile override if you want to disable the heavy kinetic blur effect on very small screens */
+@media (max-width: 768px) {
+	#scroll-kinetic-section {
+		height: 120vh; /* Shorter scroll distance for mobile */
+	}
+	.word {
+		opacity: 0.2; /* Subtle dim state instead of fully visible */
+	}
+}
