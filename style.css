@@ -8,6 +8,18 @@
 	--amber-500: #7656ee; /* signature violet */
 	--amber-300: #8b70f4; /* lighter violet */
 	--ease: cubic-bezier(0.16, 0.8, 0.24, 1);
+
+	/* --- ADD THESE FOR THE GRADIENT BACKGROUND --- */
+	--color-bg1: #0b0b0b;
+	--color-bg2: #121218;
+	--color1: 139, 112, 244; /* Matches your violet theme */
+	--color2: 74, 144, 226; /* Blue */
+	--color3: 199, 125, 255; /* Soft Violet */
+	--color4: 74, 226, 180; /* Teal */
+	--color5: 139, 112, 244; /* Accent */
+	--color-interactive: 139, 112, 244;
+	--circle-size: 80%;
+	--blending: hard-light;
 }
 
 * {
@@ -3261,5 +3273,116 @@ main,
 @media (max-width: 960px) {
 	.giats-footer-section {
 		display: none;
+	}
+}
+
+.giats-footer-section {
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+}
+
+.giats-footer-grid,
+.giats-footer-meta,
+.giats-footer-bottom {
+	position: relative;
+	z-index: 2;
+}
+
+.giats-gradient-bg {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	overflow: hidden;
+	background: radial-gradient(
+		circle at 100% 0%,
+		#2b2b2e 0%,
+		#0d0d0f 55%,
+		#060607 100%
+	);
+}
+
+/* outer layer: slow, continuous "breathing" sway — this is what
+   gives the water-like floating feel, independent of the mouse */
+.giats-rays-sway {
+	position: absolute;
+	inset: 0;
+	transform-origin: 100% 0%; /* pivot from the top-right corner */
+	animation: rays-sway 10s ease-in-out infinite;
+}
+
+/* inner layer: the actual ray fan + mouse-driven tilt on top */
+.giats-rays {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300vw;
+	height: 300vw;
+	transform: translate(50%, -50%) rotate(var(--ray-angle, 0deg));
+	background: repeating-conic-gradient(
+		from 200deg at 50% 50%,
+		rgba(255, 255, 255, 0.1) 0deg 6deg,
+		transparent 6deg 18deg
+	);
+	filter: blur(45px);
+	opacity: 0.85;
+	transition: transform 0.6s ease-out;
+	will-change: transform;
+	animation: rays-shimmer 6s ease-in-out infinite;
+}
+
+/* gentle rotation + very slight scale breathing, like light
+   refracting through moving water */
+@keyframes rays-sway {
+	0% {
+		transform: rotate(0deg) scale(1);
+	}
+	25% {
+		transform: rotate(1.2deg) scale(1.015);
+	}
+	50% {
+		transform: rotate(-0.6deg) scale(0.995);
+	}
+	75% {
+		transform: rotate(0.8deg) scale(1.01);
+	}
+	100% {
+		transform: rotate(0deg) scale(1);
+	}
+}
+
+/* subtle blur/opacity pulse layered on top so the rays feel like
+   they're shimmering, not just rotating rigidly */
+@keyframes rays-shimmer {
+	0% {
+		filter: blur(45px);
+		opacity: 0.85;
+	}
+	50% {
+		filter: blur(55px);
+		opacity: 0.7;
+	}
+	100% {
+		filter: blur(45px);
+		opacity: 0.85;
+	}
+}
+
+.giats-grain-overlay {
+	position: absolute;
+	inset: 0;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+	mix-blend-mode: overlay;
+	opacity: 0.15;
+	pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.giats-rays-sway {
+		animation: none;
+	}
+	.giats-rays {
+		animation: none;
+		transition: none;
 	}
 }

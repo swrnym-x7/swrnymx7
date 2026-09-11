@@ -1054,3 +1054,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+// mouse parallax stacks on top of the idle sway animation
+(function () {
+	const footer = document.getElementById("site-footer");
+	const rays = document.getElementById("giatsRays");
+
+	footer.addEventListener("mousemove", e => {
+		const rect = footer.getBoundingClientRect();
+		const px = (e.clientX - rect.left) / rect.width;
+		const py = (e.clientY - rect.top) / rect.height;
+		const angle = (px - 0.5) * 6 + (py - 0.5) * -4;
+		rays.style.setProperty("--ray-angle", `${angle}deg`);
+	});
+
+	footer.addEventListener("mouseleave", () => {
+		rays.style.setProperty("--ray-angle", "0deg");
+	});
+})();
