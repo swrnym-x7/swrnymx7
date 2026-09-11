@@ -1071,3 +1071,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		rays.style.setProperty("--ray-angle", "0deg");
 	});
 })();
+(function () {
+	const footer = document.getElementById("site-footer");
+	const rays = document.getElementById("giatsRays");
+
+	// skip mouse-parallax entirely on touch devices — there's no
+	// hovering cursor to track, and touchmove would fire on scroll
+	const hasFinePointer = window.matchMedia(
+		"(hover: hover) and (pointer: fine)",
+	).matches;
+	if (!hasFinePointer) return;
+
+	footer.addEventListener("mousemove", e => {
+		const rect = footer.getBoundingClientRect();
+		const px = (e.clientX - rect.left) / rect.width;
+		const py = (e.clientY - rect.top) / rect.height;
+		const angle = (px - 0.5) * 6 + (py - 0.5) * -4;
+		rays.style.setProperty("--ray-angle", `${angle}deg`);
+	});
+
+	footer.addEventListener("mouseleave", () => {
+		rays.style.setProperty("--ray-angle", "0deg");
+	});
+})();

@@ -3270,11 +3270,6 @@ main,
 .giats-top-btn {
 	z-index: 10; /* Make sure button stays clickable */
 }
-@media (max-width: 960px) {
-	.giats-footer-section {
-		display: none;
-	}
-}
 
 .giats-footer-section {
 	position: relative;
@@ -3384,5 +3379,59 @@ main,
 	.giats-rays {
 		animation: none;
 		transition: none;
+	}
+}
+@media (max-width: 768px) {
+	.giats-footer-section {
+		padding: 2rem 1.25rem 1.5rem;
+	}
+
+	/* metadata row: based-in / availability / copyright text */
+	.giats-footer-meta {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		text-align: left;
+	}
+
+	.giats-footer-meta p {
+		font-size: 0.8rem;
+		line-height: 1.4;
+	}
+
+	.giats-footer-meta .text-center,
+	.giats-footer-meta .text-right {
+		text-align: left;
+	}
+
+	/* the giant "Swrnymx7" watermark — this is almost certainly
+       a large fixed font-size (e.g. 8-10rem) meant for desktop width.
+       clamp() ties it to viewport width so it can never overflow */
+	.giats-giant-brand {
+		font-size: clamp(2.5rem, 16vw, 4rem);
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	.giats-footer-bottom {
+		margin-top: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.giats-top-btn {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+@media (max-width: 400px) {
+	.giats-footer-meta p {
+		font-size: 0.72rem;
+	}
+
+	.giats-giant-brand {
+		font-size: clamp(2rem, 15vw, 3rem);
 	}
 }
