@@ -3435,3 +3435,8 @@ main,
 		font-size: clamp(2rem, 15vw, 3rem);
 	}
 }
+@media (max-width: 768px) {
+	.contact-col {
+		display: none;
+	}
+}
