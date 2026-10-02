@@ -13,7 +13,7 @@ const IMG_DATA = {
 	six: "images/six.jpg",
 	seven: "images/seven.jpg",
 	tattoo: "images/Tattoo.png",
-	ronaldo: "images/Ronaldo.jpeg",
+	ronaldo: "images/Ronaldo.jpg",
 };
 document.querySelectorAll("img[data-key]").forEach(img => {
 	img.src = IMG_DATA[img.dataset.key];
