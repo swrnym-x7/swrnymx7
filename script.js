@@ -13,6 +13,7 @@ const IMG_DATA = {
 	six: "images/six.jpg",
 	seven: "images/seven.jpg",
 	tattoo: "images/Tattoo.png",
+	ronaldo: "images/Ronaldo.jpeg",
 };
 document.querySelectorAll("img[data-key]").forEach(img => {
 	img.src = IMG_DATA[img.dataset.key];
@@ -799,6 +800,7 @@ const greetings = [
 	"Hello",
 	"नमस्ते",
 	"Bonjour",
+	"Guten Tag",
 	"Hallo",
 	"Hola",
 	"こんにちは",
