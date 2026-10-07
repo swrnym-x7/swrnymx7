@@ -2876,6 +2876,7 @@ h1.display {
 	line-height: 1.5;
 	margin-top: 8px;
 }
+
 #scroll-kinetic-section {
 	width: 100%;
 	height: 10vh; /* Reduced runway so "Selected Work" appears much sooner */
@@ -3439,4 +3440,249 @@ main,
 	.contact-col {
 		display: none;
 	}
+}
+/* Container styling - Light Mode Grid */
+.active-canvas-wrapper {
+	position: relative;
+	width: 100%;
+	min-height: 400px;
+	background-color: #fcfcfc; /* Light background */
+	/* Subtle dark blueprint grid */
+	background-image:
+		linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+	background-size: 20px 20px;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	cursor: crosshair;
+	perspective: 1000px;
+}
+
+/* Simulated Selection Box - Light Mode */
+.canvas-selection-box {
+	position: relative;
+	width: 85%;
+	padding: 24px;
+	background: rgba(255, 255, 255, 0.9); /* Frosted white glass */
+	border: 1px solid #7656ee; /* Figma purple */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+	backdrop-filter: blur(10px);
+	transform-style: preserve-3d;
+	transition: transform 0.1s ease;
+}
+
+/* Bounding Box Corner Nodes */
+.node {
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	background: #ffffff;
+	border: 1px solid #7656ee;
+}
+.top-left {
+	top: -4px;
+	left: -4px;
+}
+.top-right {
+	top: -4px;
+	right: -4px;
+}
+.bottom-left {
+	bottom: -4px;
+	left: -4px;
+}
+.bottom-right {
+	bottom: -4px;
+	right: -4px;
+}
+
+/* Header & Typography - Dark Text */
+.canvas-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 32px;
+	font-family: inter;
+	font-size: 11px;
+	color: rgba(0, 0, 0, 0.5); /* Dark grey text */
+}
+.layer-name {
+	color: #7656ee;
+	font-weight: bold;
+}
+
+.track-label {
+	display: block;
+	font-family: monospace;
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	color: rgba(0, 0, 0, 0.4);
+	margin-bottom: 12px;
+}
+
+/* Swatches */
+.palette-track {
+	margin-bottom: 32px;
+}
+.swatches {
+	display: flex;
+	gap: 8px;
+}
+.swatch {
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1); /* Dark border for white swatch */
+	transition:
+		transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+		box-shadow 0.3s ease;
+	position: relative;
+}
+.swatch:hover {
+	transform: translateY(-8px) scale(1.1);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+/* Typography Specimen - Dark text */
+.type-specimen {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+.font-row {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: rgba(0, 0, 0, 0.02); /* Very light grey */
+	padding: 12px;
+	border-radius: 6px;
+	color: #111; /* Dark text */
+}
+.font-letter {
+	font-size: 28px;
+	line-height: 1;
+}
+.font-letter.serif {
+	font-family: "Fraunces", serif;
+	font-weight: 300;
+	font-style: italic;
+	color: #7656ee;
+}
+.font-letter.sans {
+	font-family: "Inter", sans-serif;
+	font-weight: 500;
+}
+
+.font-details {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.font-name {
+	font-size: 14px;
+	font-weight: 500;
+}
+.font-use {
+	font-size: 11px;
+	opacity: 0.6;
+}
+
+/* Footer */
+.canvas-footer {
+	margin-top: 32px;
+	font-family: monospace;
+	font-size: 10px;
+	color: rgba(0, 0, 0, 0.4);
+	text-align: right;
+	position: relative;
+}
+.ruler-line {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 60%;
+	height: 1px;
+	background: dashed 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Interactive Crosshairs */
+.crosshair {
+	position: absolute;
+	background: rgba(118, 86, 238, 0.5);
+	pointer-events: none;
+	z-index: 0;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+.x-axis {
+	height: 1px;
+	width: 100%;
+	top: 50%;
+	left: 0;
+}
+.y-axis {
+	width: 1px;
+	height: 100%;
+	left: 50%;
+	top: 0;
+}
+.active-canvas-wrapper:hover .crosshair {
+	opacity: 1;
+}
+/* Ensure the card allows 3D children */
+.canvas-selection-box {
+	transform-style: preserve-3d;
+}
+
+/* Push elements off the flat background */
+.canvas-header,
+.palette-track,
+.type-track,
+.canvas-footer {
+	transform: translateZ(30px);
+	transition: transform 0.3s ease;
+}
+
+/* Push swatches even further out */
+.swatches {
+	transform: translateZ(45px);
+}
+/* Update your existing .font-row to add the transition */
+.font-row {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: rgba(0, 0, 0, 0.02); /* Very light grey */
+	padding: 12px;
+	border-radius: 8px;
+	color: #111;
+	border: 1px solid transparent; /* Invisible border to prevent layout shift on hover */
+
+	/* Add this smooth bouncy transition */
+	transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+	cursor: crosshair;
+}
+
+/* Add this new hover state so it pops out */
+.font-row:hover {
+	background: #ffffff; /* Turns solid white */
+	border: 1px solid rgba(0, 0, 0, 0.08); /* Subtle border appears */
+
+	/* Elevates up, slides slightly to the right, and pushes forward in 3D */
+	transform: translateY(-4px) translateX(8px) translateZ(10px);
+
+	/* Casts a soft, premium shadow */
+	box-shadow:
+		0 12px 24px rgba(0, 0, 0, 0.06),
+		0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Optional: Make the font name turn purple on hover for an extra detail */
+.font-row:hover .font-name {
+	color: #7656ee;
+	transition: color 0.3s ease;
 }

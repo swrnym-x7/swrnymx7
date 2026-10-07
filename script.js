@@ -1096,3 +1096,119 @@ document.addEventListener("DOMContentLoaded", () => {
 		rays.style.setProperty("--ray-angle", "0deg");
 	});
 })();
+document.addEventListener("DOMContentLoaded", () => {
+	const wrapper = document.getElementById("designCanvas");
+	const canvasBox = document.getElementById("canvasBox");
+	const xAxis = wrapper.querySelector(".x-axis");
+	const yAxis = wrapper.querySelector(".y-axis");
+
+	if (wrapper && canvasBox) {
+		wrapper.addEventListener("mousemove", e => {
+			const rect = wrapper.getBoundingClientRect();
+
+			// Mouse position relative to the container
+			const x = e.clientX - rect.left;
+			const y = e.clientY - rect.top;
+
+			// Move the crosshairs to follow the cursor
+			xAxis.style.top = `${y}px`;
+			yAxis.style.left = `${x}px`;
+
+			// Calculate subtle 3D tilt (designers love depth)
+			const rotX = -(y / rect.height - 0.5) * 8; // Max 8 deg rotation
+			const rotY = (x / rect.width - 0.5) * 8;
+
+			canvasBox.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+		});
+
+		wrapper.addEventListener("mouseleave", () => {
+			// Reset rotation when mouse leaves
+			canvasBox.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+			canvasBox.style.transition = "transform 0.5s ease-out";
+		});
+
+		wrapper.addEventListener("mouseenter", () => {
+			// Remove transition for snappy 1:1 tracking while inside
+			canvasBox.style.transition = "none";
+		});
+	}
+});
+document.addEventListener("DOMContentLoaded", () => {
+	const wrapper = document.getElementById("designCanvas");
+	const canvasBox = document.getElementById("canvasBox");
+	const xAxis = wrapper.querySelector(".x-axis");
+	const yAxis = wrapper.querySelector(".y-axis");
+
+	// Grab the dimensions text to turn it into a live coordinate tracker
+	const dimensionsText = document.querySelector(".dimensions");
+	const swatches = document.querySelectorAll(".swatch");
+
+	if (wrapper && canvasBox) {
+		// 1. Handle Main Canvas Hover (Crosshairs, Tilt, and Coordinates)
+		wrapper.addEventListener("mousemove", e => {
+			const rect = wrapper.getBoundingClientRect();
+
+			// Mouse position relative to the container
+			const x = e.clientX - rect.left;
+			const y = e.clientY - rect.top;
+
+			// Move the crosshairs
+			xAxis.style.top = `${y}px`;
+			yAxis.style.left = `${x}px`;
+
+			// Update header with live X/Y pixel tracking
+			if (dimensionsText) {
+				dimensionsText.textContent = `X: ${Math.round(x)}px — Y: ${Math.round(y)}px`;
+			}
+
+			// Calculate 3D tilt
+			const rotX = -(y / rect.height - 0.5) * 12;
+			const rotY = (x / rect.width - 0.5) * 12;
+
+			canvasBox.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+		});
+
+		wrapper.addEventListener("mouseleave", () => {
+			// Reset card rotation
+			canvasBox.style.transform = `rotateX(0deg) rotateY(0deg)`;
+			canvasBox.style.transition =
+				"transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)";
+
+			// Reset coordinate text
+			if (dimensionsText) {
+				dimensionsText.textContent = `W: 100% — H: AUTO`;
+			}
+		});
+
+		wrapper.addEventListener("mouseenter", () => {
+			canvasBox.style.transition = "none";
+		});
+
+		// 2. Handle Magnetic Physics for Color Swatches
+		swatches.forEach(swatch => {
+			swatch.addEventListener("mousemove", e => {
+				const rect = swatch.getBoundingClientRect();
+				// Find center of the swatch
+				const swatchCenterX = rect.left + rect.width / 2;
+				const swatchCenterY = rect.top + rect.height / 2;
+
+				// Calculate distance from cursor to center of swatch
+				const distanceX = e.clientX - swatchCenterX;
+				const distanceY = e.clientY - swatchCenterY;
+
+				// Pull swatch toward cursor (the 0.4 controls the magnetic strength)
+				swatch.style.transform = `translate(${distanceX * 0.4}px, ${distanceY * 0.4}px) scale(1.15)`;
+				swatch.style.transition = "none";
+				swatch.style.zIndex = "10";
+			});
+
+			swatch.addEventListener("mouseleave", () => {
+				// Snap swatch back into perfectly aligned grid
+				swatch.style.transform = `translate(0px, 0px) scale(1)`;
+				swatch.style.transition =
+					"transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)"; // Bouncy snap back
+				swatch.style.zIndex = "1";
+			});
+		});
+	}
+});

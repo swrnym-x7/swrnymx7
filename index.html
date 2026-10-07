@@ -40,6 +40,7 @@
 			rel="stylesheet"
 			href="style.css"
 		/>
+		
 	</head>
 	<body>
 	<main>
@@ -216,30 +217,63 @@
             </div>
         </div>
 
-        <div class="bento-grid">
-  <!-- Main Card -->
-  <div class="bento-card bento-main">
-    <span class="bento-tag">// SYS_PROFILE</span>
-    <h3>Digital Architect</h3>
-    <p>Crafting high-performance, minimalist digital experiences with surgical precision and modern web architecture.</p>
-  </div>
+        <div class="active-canvas-wrapper" id="designCanvas">
+    <!-- Cursor tracking crosshairs -->
+    <div class="crosshair x-axis"></div>
+    <div class="crosshair y-axis"></div>
 
-  <!-- Tech Stack Card -->
-  <div class="bento-card">
-    <span class="bento-tag">// TECH_STACK</span>
-    <div class="tech-badges">
-      <span>JS</span>
-      <span>CSS3</span>
-      <span>HTML5</span>
-      <span>Figma</span>
+    <!-- The simulated Figma/Design selection box -->
+    <div class="canvas-selection-box" id="canvasBox">
+        <!-- Bounding Box Nodes (The little white squares) -->
+        <div class="node top-left"></div>
+        <div class="node top-right"></div>
+        <div class="node bottom-left"></div>
+        <div class="node bottom-right"></div>
+
+        <div class="canvas-header">
+            <span class="layer-name"><span class="icon">⬡</span> SYS_DESIGN_TOKENS</span>
+            <span class="dimensions">W: 100% — H: AUTO</span>
+        </div>
+
+        <!-- Interactive Color Palette -->
+        <div class="palette-track">
+            <span class="track-label">PALETTE</span>
+            <div class="swatches">
+                <div class="swatch" style="background: #0b0b0b;" data-hex="#0B0B0B"></div>
+                <div class="swatch" style="background: #1a1a1a;" data-hex="#1A1A1A"></div>
+                <div class="swatch" style="background: #7656EE;" data-hex="#7656EE"></div>
+                <div class="swatch" style="background: #d4b26f;" data-hex="#D4B26F"></div>
+                <div class="swatch" style="background: #ffffff;" data-hex="#FFFFFF"></div>
+            </div>
+        </div>
+
+        <!-- Typography Specimen -->
+        <div class="type-track">
+            <span class="track-label">TYPOGRAPHY</span>
+            <div class="type-specimen">
+                <div class="font-row">
+                    <span class="font-letter serif">Aa</span>
+                    <div class="font-details">
+                        <span class="font-name">Fraunces</span>
+                        <span class="font-use">Display & Italic Accents</span>
+                    </div>
+                </div>
+                <div class="font-row">
+                    <span class="font-letter sans">Aa</span>
+                    <div class="font-details">
+                        <span class="font-name">Inter</span>
+                        <span class="font-use">Body & UI Elements</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-footer">
+            <div class="ruler-line"></div>
+            <span></span>
+        </div>
     </div>
-  </div>
-
-  <!-- Telemetry / Status Card -->
-  <div class="bento-card">
-    <span class="bento-tag">// TELEMETRY</span>
-    <p class="status-live"><span class="pulse-dot"></span> STATUS: ONLINE</p>
-  </div>
+</div>
 </div>
     </div>
 </section>
