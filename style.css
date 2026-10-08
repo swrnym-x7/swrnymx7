@@ -3579,7 +3579,7 @@ main,
 	color: #7656ee;
 }
 .font-letter.sans {
-	font-family: "Inter", sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 500;
 }
 
@@ -3591,6 +3591,11 @@ main,
 .font-name {
 	font-size: 14px;
 	font-weight: 500;
+}
+.font-name0 {
+	font-family: "Fraunces";
+	font-style: italic;
+	color: #7a52f4;
 }
 .font-use {
 	font-size: 11px;
