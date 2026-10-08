@@ -33,9 +33,15 @@ html {
 body {
 	background: var(--graphite-950);
 	color: var(--bone);
-	font-family: "Inter", sans-serif;
 	overflow-x: hidden;
 	cursor: default;
+}
+body,
+p,
+span,
+li,
+a {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 ::selection {
 	background: var(--amber-500);
