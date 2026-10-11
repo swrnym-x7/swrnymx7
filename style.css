@@ -3697,3 +3697,103 @@ main,
 	color: #7656ee;
 	transition: color 0.3s ease;
 }
+.tools-section {
+	margin-top: 3.5rem;
+}
+
+.tools-section h3 {
+	font-family: "Fraunces", serif;
+	font-style: italic;
+	font-size: 1.25rem;
+	margin-bottom: 1.2rem;
+	color: var(--text-main, #111);
+}
+
+.tools-grid {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.tool-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 68px;
+	height: 68px;
+	background: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	border-radius: 14px;
+	cursor: pointer;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+	/* Continuous gentle floating effect */
+	animation: float 4s ease-in-out infinite;
+}
+
+/* Stagger the float timing for a natural wave look */
+.tool-card:nth-child(2) {
+	animation-delay: 0.6s;
+}
+.tool-card:nth-child(3) {
+	animation-delay: 1.2s;
+}
+.tool-card:nth-child(4) {
+	animation-delay: 1.8s;
+}
+.tool-card:nth-child(5) {
+	animation-delay: 2.4s;
+}
+.tool-card:nth-child(6) {
+	animation-delay: 3s;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+/* Hover Interactivity */
+.tool-card:hover {
+	transform: translateY(-8px) scale(1.06);
+	border-color: var(--accent-violet, #7c3aed);
+	background: #ffffff;
+	box-shadow: 0 12px 30px -8px rgba(124, 58, 237, 0.15);
+	animation-play-state: paused; /* Pause floating on hover */
+}
+
+.tool-svg {
+	width: 28px;
+	height: 28px;
+	object-fit: contain;
+	transition: transform 0.3s ease;
+}
+
+.tool-card:hover .tool-svg {
+	transform: scale(1.12);
+}
+
+.tool-name {
+	position: absolute;
+	bottom: -22px;
+	font-size: 0.65rem;
+	font-family: "Helvetica Neue", sans-serif;
+	color: #555;
+	opacity: 0;
+	transform: translateY(-4px);
+	transition: all 0.2s ease;
+	pointer-events: none;
+	white-space: nowrap;
+}
+
+.tool-card:hover .tool-name {
+	opacity: 1;
+	transform: translateY(0);
+}
