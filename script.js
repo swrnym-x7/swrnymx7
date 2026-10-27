@@ -12,7 +12,7 @@ const IMG_DATA = {
 	five: "images/five.jpg",
 	six: "images/six.jpg",
 	seven: "images/seven.jpg",
-	tattoo: "images/Tattoo.png",
+	tattoo: "images/eryx.png",
 	ronaldo: "images/ronaldo.jpg",
 };
 document.querySelectorAll("img[data-key]").forEach(img => {
@@ -1211,4 +1211,60 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 	}
+});
+/* =========================================================
+  
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+	const items = Array.from(document.querySelectorAll(".estrada-work-item"));
+	const lightbox = document.getElementById("workLightbox");
+	const lightboxImg = document.getElementById("workLightboxImg");
+	const lightboxClose = document.getElementById("workLightboxClose");
+
+	if (!items.length) return;
+
+	// 1. Click any artwork to inspect in fullscreen Lightbox
+	items.forEach(item => {
+		const img = item.querySelector("img");
+		item.addEventListener("click", () => {
+			if (!img || !lightbox || !lightboxImg) return;
+			lightboxImg.src = img.src;
+			lightbox.classList.add("is-open");
+		});
+	});
+
+	if (lightbox) {
+		lightboxClose?.addEventListener("click", e => {
+			e.stopPropagation();
+			lightbox.classList.remove("is-open");
+		});
+		lightbox.addEventListener("click", e => {
+			if (e.target === lightbox) lightbox.classList.remove("is-open");
+		});
+		window.addEventListener("keydown", e => {
+			if (e.key === "Escape") lightbox.classList.remove("is-open");
+		});
+	}
+
+	// 2. Smooth Parallax Glide as cards pass over "Selected work"
+	function updateStreamParallax() {
+		const viewCenter = window.innerHeight / 2;
+
+		items.forEach(item => {
+			const rect = item.getBoundingClientRect();
+			// Only animate items near or inside the viewport
+			if (rect.bottom < -200 || rect.top > window.innerHeight + 200)
+				return;
+
+			const speed = parseFloat(item.getAttribute("data-speed") || "0.05");
+			const itemCenter = rect.top + rect.height / 2;
+			const offset = (itemCenter - viewCenter) * speed;
+
+			item.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+		});
+	}
+
+	window.addEventListener("scroll", updateStreamParallax, { passive: true });
+	window.addEventListener("resize", updateStreamParallax);
+	updateStreamParallax();
 });
