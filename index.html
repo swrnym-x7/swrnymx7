@@ -92,95 +92,86 @@
 			</nav>
 		</header>
 
-		<section class="hero">
-			<canvas id="net"></canvas>
-			<div
-			
-				class="orbit"
-				id="orbit"
-			>
-				<div class="orbit-center"></div>
-				<div
-					class="orbit-item"
-					data-key="rockstar"
-				>
-					<img
-						data-key="rockstar"
-						alt="Crowned"
-					/><span class="oi-label">Crowned</span>
-				</div>
-				<div
-					class="orbit-item"
-					data-key="swapnil"
-				>
-					<img
-						data-key="ronaldo"
-						alt="Ronaldo"
-					/><span class="oi-label">Ronaldo</span>
-				</div>
-				<div
-					class="orbit-item"
-					data-key="manipulation"
-				>
-					<img
-						data-key="manipulation"
-						alt="Manipulation"
-					/><span class="oi-label">Manipulation</span>
-				</div>
-				<div
-					class="orbit-item"
-					data-key="lookoflove"
-				>
-					<img
-						data-key="lookoflove"
-						alt="Look of Love"
-					/><span class="oi-label">Look of Love</span>
-				</div>
-				<div
-					class="orbit-item"
-					data-key="reflections"
-				>
-					<img
-						data-key="reflections"
-						alt="Reflections"
-					/><span class="oi-label">Reflections</span>
-				</div>
-				<div
-					class="orbit-item"
-					data-key="eye"
-				>
-					<img
-						data-key="eye"
-						alt="Eye"
-					/><span class="oi-label"></span>
-				</div>
-			</div>
-			<div class="hero-inner">
-    <div class="eyebrow">
-        Graphic Design — UI/UX — Based in Nepal
-    </div>
-    <h1 class="display">
-        From <em>creative</em> <br />concepts to considered,<br />digital<br />
-        <em>experience.</em>
-    </h1>
-	<div class="scroll-line-container">
-  <svg class="growing-line" viewBox="0 0 600 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="line-path" d="M3 15C150 5 350 25 597 12" stroke="#6c5ce7" stroke-width="4" stroke-linecap="round"/>
-  </svg>
-</div>
-			 	<p class="hero-sub">
-					 
-				</p> 
-			</div>
-			<div class="scroll-cue">
-				<div class="line"></div>
-				
+		<section class="hero multiplayer-hero">
+    <!-- The prominent graph paper grid background -->
+    <div class="hero-grid-bg"></div>
 
-				ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-					 ㅤㅤㅤㅤㅤ
-					 ㅤㅤㅤㅤㅤ
-			</div>
-		</section>
+    <!-- The Scattered Canvas Elements -->
+    <!-- The Scattered Canvas Elements (Pushed to Edges) -->
+    <div class="multiplayer-canvas">
+        
+        <!-- Top Left Corner -->
+        <div class="cursor-badge" style="top: 15%; left: 12%; --c-color: #6366f1;" data-depth="40">
+            <svg viewBox="0 0 24 24" fill="var(--c-color)" width="16"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.45 0 .67-.54.35-.85L6.35 3.21a.5.5 0 0 0-.85 0z"/></svg>
+            <span class="label">UI/UX Designer</span>
+        </div>
+        <div class="board-tool" style="top: 25%; left: 5%;" data-depth="30">
+            <img src="images/Svg/vscode.svg" alt="VS Code">
+        </div>
+
+        <!-- Top Right Corner -->
+        <div class="cursor-badge" style="top: 18%; right: 20%; --c-color: #10b981;" data-depth="-30">
+            <svg viewBox="0 0 24 24" fill="var(--c-color)" width="16"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.45 0 .67-.54.35-.85L6.35 3.21a.5.5 0 0 0-.85 0z"/></svg>
+            <span class="label">Product Designer</span>
+        </div>
+        <div class="board-tool" style="top: 12%; right: 8%;" data-depth="-50">
+            <img src="images/Svg/figma.svg" alt="Figma">
+        </div>
+        <div class="board-bubble" style="top: 30%; right: 4%;" data-depth="-40">
+            <div class="avatar">S</div>
+            <div class="bubble-text">
+                <strong>Swrnymx7</strong><br>
+                Lets design something together.
+            </div>
+        </div>
+
+        <!-- Bottom Left Corner -->
+        <div class="cursor-badge" style="top: 70%; left: 8%; --c-color: #ec4899;" data-depth="60">
+            <svg viewBox="0 0 24 24" fill="var(--c-color)" width="16"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.45 0 .67-.54.35-.85L6.35 3.21a.5.5 0 0 0-.85 0z"/></svg>
+            <span class="label">Graphics Designer</span>
+        </div>
+        <div class="board-tool" style="top: 85%; left: 15%;" data-depth="45">
+            <img src="images/Svg/illustrator.svg" alt="Illustrator">
+        </div>
+
+        <!-- Bottom Right Corner -->
+        <div class="cursor-badge" style="bottom: 12%; right: 15%; --c-color: #ef4444;" data-depth="50">
+            <svg viewBox="0 0 24 24" fill="var(--c-color)" width="16"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.45 0 .67-.54.35-.85L6.35 3.21a.5.5 0 0 0-.85 0z"/></svg>
+            <span class="label">Web Developer</span>
+        </div>
+        <div class="board-tool" style="bottom: 25%; right: 8%;" data-depth="-20">
+            <img src="images/Svg/react.svg" alt="React">
+        </div>
+        
+        <!-- Bottom Center-ish -->
+        <div class="board-bubble" style="bottom: 8%; left: 35%;" data-depth="25">
+            <div class="avatar">C</div>
+            <div class="bubble-text">
+                <strong>Client</strong> <br>
+                I'm in.
+                 Let's build something amazing
+            </div>
+        </div>
+<!-- Decorative Eye Sticker (Mid-Left) -->
+       <!-- Decorative Eye Sticker -->
+        <div class="board-tool eye-sticker" style="top: 48%; left: 2%; width: 130px; background: transparent !important; box-shadow: none !important; padding: 0 !important;" data-depth="15">
+            <img src="images/eye sticker.png" alt="Creative Eye" style="width: 100%; height: auto; filter: drop-shadow(0px 12px 24px rgba(0,0,0,0.15));">
+        </div>
+    </div>
+
+    <!-- Centered Main Text -->
+    <!-- Centered Main Text -->
+    <div class="hero-inner">
+        <div class="eyebrow">
+            Graphic Design — UI/UX — Based in Nepal
+        </div>
+        <h1 class="display massive-text">
+            From <em>creative</em> concepts<br>
+            to considered digital<br>
+            <em>experiences.</em>
+        </h1>
+    </div>
+</section>
 
 		<hr>
 		
@@ -621,6 +612,7 @@ lenis.on('scroll', (e) => {
   console.log(e);
 });
 		</script>
-	
+	<!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 	</body>
 </html>

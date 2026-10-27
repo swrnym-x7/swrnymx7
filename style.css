@@ -4036,3 +4036,409 @@ main,
 		align-self: center;
 	}
 }
+/* =========================================
+   HERO RE-LAYOUT: CENTERED + FLOATING TOOLS
+   ========================================= */
+
+/* Force Center Alignment for Hero Content */
+.hero-inner {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px !important;
+}
+
+.hero-inner .eyebrow {
+    justify-content: center !important;
+}
+
+h1.display {
+    text-align: center !important;
+}
+
+/* Positioning for the interactive tool SVGs */
+.hero-tools {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    z-index: 10;
+}
+
+.hero-tools-left {
+    left: 8vw;
+}
+
+.hero-tools-right {
+    right: 8vw;
+}
+
+/* Create a staggered/arched look so they frame the text nicely */
+.hero-tools-left .tool-card:nth-child(2) {
+    margin-left: -35px;
+}
+.hero-tools-right .tool-card:nth-child(2) {
+    margin-right: -35px;
+}
+
+/* Hide the floating tools on mobile so the hero stays clean */
+@media (max-width: 960px) {
+    .hero-tools {
+        display: none;
+    }
+}
+/* =========================================
+   AWWWARDS MULTIPLAYER WHITEBOARD HERO
+   ========================================= */
+
+.multiplayer-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #fafafa;
+}
+
+/* 1. Heavy Graph Grid Background */
+.hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: 
+        linear-gradient(rgba(17, 17, 17, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 17, 17, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: center center;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* 2. Massive, Tight Central Text */
+.hero-inner {
+    position: relative;
+    z-index: 5;
+    pointer-events: none; /* Lets you hover elements behind text */
+}
+
+h1.massive-text {
+    font-family: "Inter", "Helvetica Neue", sans-serif !important;
+    font-size: clamp(60px, 9vw, 140px) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.06em !important;
+    line-height: 0.9 !important;
+    color: #111111;
+    text-align: center;
+    text-transform: lowercase; /* Matches the "internet." vibe */
+    margin: 0;
+}
+
+h1.massive-text em {
+    color: #111111;
+    font-family: inherit;
+    font-style: normal;
+}
+
+/* 3. Multiplayer Canvas & Elements */
+.multiplayer-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.multiplayer-canvas > * {
+    position: absolute;
+    pointer-events: auto;
+    /* Native CSS drifting based on JS mouse coordinates */
+    translate: var(--mx, 0px) var(--my, 0px);
+    transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+    animation: organicFloat 4s ease-in-out infinite alternate;
+}
+
+/* Fake Cursors */
+.cursor-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+}
+
+.cursor-badge svg {
+    transform: rotate(-15deg); /* Classic cursor tilt */
+}
+
+.cursor-badge .label {
+    background-color: var(--c-color);
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+/* Scattered Tool Boxes */
+.board-tool {
+    width: 64px;
+    height: 64px;
+    background: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.board-tool img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* Notification Bubbles */
+.board-bubble {
+    background: #ffffff;
+    padding: 12px 16px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.board-bubble .avatar {
+    width: 24px;
+    height: 24px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.board-bubble .bubble-text {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    color: #555;
+    line-height: 1.3;
+}
+
+.board-bubble .bubble-text strong {
+    color: #111;
+}
+
+/* Organic Floating Animation */
+@keyframes organicFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* Stagger animation timing slightly for organic feel */
+.multiplayer-canvas > *:nth-child(even) { animation-delay: -2s; animation-duration: 5s; }
+.multiplayer-canvas > *:nth-child(3n) { animation-delay: -1s; animation-duration: 3.5s; }
+
+/* Hide scattered elements on small mobile screens */
+@media (max-width: 768px) {
+    .multiplayer-canvas {
+        display: none;
+    }
+}
+/* 2. Massive, Elegant Central Text */
+.hero-inner {
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Pulls the text up to visually center it between the header and the bottom */
+    transform: translateY(-6vh); 
+}
+
+/* Restore the original eyebrow styling for the new layout */
+.hero-inner .eyebrow {
+    font-family: "Inter", "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: #4f5870;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.hero-inner .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #7656ee;
+    border-radius: 50%;
+}
+
+/* Restore the original elegant font stack */
+h1.massive-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    
+    /* Safely scales based on width OR height, preventing bottom cut-off */
+    font-size: clamp(42px, min(7.5vw, 12vh), 120px) !important;
+    
+    font-weight: 650 !important;
+    letter-spacing: -0.04em !important;
+    
+    /* Slightly tighter line spacing to pull the text block together */
+    line-height: 0.92 !important; 
+    
+    color: #111111 !important;
+    text-align: center;
+    text-transform: none !important;
+    margin: 0;
+}
+
+/* Restore the signature purple italic serif */
+h1.massive-text em {
+    font-family: "Fraunces", serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    color: #7656ee !important;
+    letter-spacing: -0.02em !important;
+    display: inline-block;
+}
+/* 1. Make the Grid Pattern slightly finer for a more spacious feel */
+.hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: 
+        linear-gradient(rgba(17, 17, 17, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 17, 17, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px; /* Slightly smaller grid squares */
+    background-position: center center;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+}
+
+/* 2. Scale down the massive text slightly to give the layout breathing room */
+h1.massive-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    
+    /* Reduced max width from 120px to 95px so it doesn't crowd the sides */
+    font-size: clamp(38px, min(6.5vw, 10vh), 95px) !important; 
+    
+    font-weight: 450 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 0.95 !important;
+    color: #111111 !important;
+    text-align: center;
+    text-transform: none !important;
+    margin: 0;
+}
+/* Show scattered elements on mobile, but scale them down cleanly */
+@media (max-width: 768px) {
+    .multiplayer-canvas {
+        display: block !important; /* Brings everything back */
+    }
+
+    /* 1. Shrink the fake cursors */
+    .cursor-badge .label {
+        font-size: 9px;
+        padding: 3px 8px;
+    }
+    .cursor-badge svg {
+        width: 12px;
+    }
+
+    /* 2. Shrink the tool icons */
+    .board-tool {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+    }
+    .board-tool img {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* 3. Shrink the chat bubbles */
+    .board-bubble {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    .board-bubble .avatar {
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+    }
+    .board-bubble .bubble-text {
+        font-size: 9px;
+    }
+    
+    /* 4. Drop the opacity slightly so the main text stays easy to read if they overlap */
+    .multiplayer-canvas > * {
+        opacity: 0.85;
+    }
+}
+/* Hide the eyebrow text on mobile */
+@media (max-width: 768px) {
+    .hero-inner .eyebrow {
+        display: none !important;
+    }
+}
+/* =========================================
+   INTERACTIVE ITALIC WORDS (Targeting <em>)
+   ========================================= */
+.massive-text em {
+    display: inline-block; /* Required for transforms to work */
+    cursor: pointer;
+    /* Smooth, spring-like transition for all properties */
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.massive-text em:hover {
+    font-weight: 800;             /* Rapid font-weight shift */
+    letter-spacing: 0.08em;       /* Stretches the text out */
+    transform: scale(2.08) rotate(-2deg); /* Snaps slightly larger and tilted */
+
+}
+/* =========================================
+   INTERACTIVE ITALIC WORDS (Targeting <em>)
+   ========================================= */
+.massive-text em {
+    display: inline-block;
+    cursor: pointer;
+    pointer-events: auto; /* This forces the words to detect your mouse again */
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.massive-text em:hover {
+    font-weight: 800;             
+    letter-spacing: 0.08em;       
+    transform: scale(2.08) rotate(-2deg); 
+}
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    .eye-sticker {
+        top: 55% !important;  /* Floats it in the upper-left gap above the text */
+        left: 5% !important;  /* Brings it slightly back into frame */
+        width: 90px !important; 
+    }
+}

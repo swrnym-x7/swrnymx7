@@ -202,59 +202,6 @@ clickables.forEach(el => {
 	}, 80);
 })();
 
-const canvas = document.getElementById("net");
-const ctx = canvas.getContext("2d");
-let w, h, points;
-function resize() {
-	w = canvas.width = canvas.offsetWidth;
-	h = canvas.height = canvas.offsetHeight;
-}
-function initPoints() {
-	const count = Math.floor((w * h) / 26000);
-	points = Array.from({ length: count }, () => ({
-		x: Math.random() * w,
-		y: Math.random() * h,
-		vx: (Math.random() - 0.5) * 0.3,
-		vy: (Math.random() - 0.5) * 0.3,
-	}));
-}
-function tick() {
-	ctx.clearRect(0, 0, w, h);
-	points.forEach(p => {
-		p.x += p.vx;
-		p.y += p.vy;
-		if (p.x < 0 || p.x > w) p.vx *= -1;
-		if (p.y < 0 || p.y > h) p.vy *= -1;
-	});
-	for (let i = 0; i < points.length; i++) {
-		for (let j = i + 1; j < points.length; j++) {
-			const dx = points[i].x - points[j].x,
-				dy = points[i].y - points[j].y;
-			const dist = Math.sqrt(dx * dx + dy * dy);
-			if (dist < 140) {
-				ctx.strokeStyle = `rgba(217,149,74,${(1 - dist / 140) * 0.35})`;
-				ctx.lineWidth = 1;
-				ctx.beginPath();
-				ctx.moveTo(points[i].x, points[i].y);
-				ctx.lineTo(points[j].x, points[j].y);
-				ctx.stroke();
-			}
-		}
-		ctx.fillStyle = "rgba(241,239,233,.55)";
-		ctx.beginPath();
-		ctx.arc(points[i].x, points[i].y, 1.6, 0, Math.PI * 2);
-		ctx.fill();
-	}
-	requestAnimationFrame(tick);
-}
-window.addEventListener("resize", () => {
-	resize();
-	initPoints();
-});
-resize();
-initPoints();
-tick();
-
 // Circular orbit of photos in the hero
 (function () {
 	const orbit = document.getElementById("orbit");
@@ -1212,59 +1159,114 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
-/* =========================================================
-  
-   ========================================================= */
+
+/* =========================================
+   MULTIPLAYER WHITEBOARD: PARALLAX FIXED + TEXT-SAFE
+   ========================================= */
 document.addEventListener("DOMContentLoaded", () => {
-	const items = Array.from(document.querySelectorAll(".estrada-work-item"));
-	const lightbox = document.getElementById("workLightbox");
-	const lightboxImg = document.getElementById("workLightboxImg");
-	const lightboxClose = document.getElementById("workLightboxClose");
+	const heroSection = document.querySelector(".hero");
 
-	if (!items.length) return;
+	// 1. Mouse Parallax for Tools and Bubbles ONLY (Using CSS variables)
+	const parallaxElements = document.querySelectorAll(
+		".board-tool, .board-bubble",
+	);
 
-	// 1. Click any artwork to inspect in fullscreen Lightbox
-	items.forEach(item => {
-		const img = item.querySelector("img");
-		item.addEventListener("click", () => {
-			if (!img || !lightbox || !lightboxImg) return;
-			lightboxImg.src = img.src;
-			lightbox.classList.add("is-open");
+	if (heroSection && parallaxElements.length > 0) {
+		heroSection.addEventListener("mousemove", e => {
+			const { clientWidth, clientHeight } = heroSection;
+
+			// Normalize mouse position (-0.5 to 0.5)
+			const xPos = e.clientX / clientWidth - 0.5;
+			const yPos = e.clientY / clientHeight - 0.5;
+
+			parallaxElements.forEach(el => {
+				const depth = parseInt(el.getAttribute("data-depth")) || 20;
+
+				// Using CSS variables prevents conflict with your organic float animation
+				el.style.setProperty("--mx", `${xPos * depth}px`);
+				el.style.setProperty("--my", `${yPos * depth}px`);
+			});
 		});
+
+		heroSection.addEventListener("mouseleave", () => {
+			parallaxElements.forEach(el => {
+				el.style.setProperty("--mx", `0px`);
+				el.style.setProperty("--my", `0px`);
+			});
+		});
+	}
+
+	// 2. Autonomous Cursors (Restricted from Center Text)
+	const cursors = document.querySelectorAll(".cursor-badge");
+
+	cursors.forEach(cursor => {
+		cursor.style.animation = "none"; // Stop the CSS bobbing
+
+		function wander() {
+			// 70% chance to work vigorously at their tool, 30% chance to roam their quadrant
+			const isWorking = Math.random() > 0.3;
+
+			let moveX, moveY, duration;
+
+			if (isWorking) {
+				// Dart around locally (simulating active designing/coding)
+				moveX = (Math.random() - 0.5) * 120; // Maximum 60px in any direction
+				moveY = (Math.random() - 0.5) * 120;
+				duration = Math.random() * 1500 + 1000; // Fast, short movements
+			} else {
+				// Take a longer flight, but strictly limited so they NEVER hit the text
+				moveX = (Math.random() - 0.5) * 350; // Maximum 175px in any direction
+				moveY = (Math.random() - 0.5) * 350;
+				duration = Math.random() * 3000 + 3000; // Slow, smooth gliding
+			}
+
+			// Apply the movement using standard transform just for the cursors
+			cursor.style.transition = `transform ${duration}ms ease-in-out`;
+			cursor.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+			// Queue the next movement
+			setTimeout(wander, duration + 100);
+		}
+
+		// Stagger their start times so it looks natural
+		setTimeout(wander, Math.random() * 1000 + 500);
+	});
+});
+// 3. GSAP Custom Cursor Tracker
+const customCursor = document.createElement("div");
+customCursor.classList.add("custom-cursor");
+document.body.appendChild(customCursor);
+
+// GSAP quickTo is optimized to follow the mouse without performance drops
+const xTo = gsap.quickTo(customCursor, "x", { duration: 0.15, ease: "power3" });
+const yTo = gsap.quickTo(customCursor, "y", { duration: 0.15, ease: "power3" });
+
+window.addEventListener("mousemove", e => {
+	xTo(e.clientX);
+	yTo(e.clientY);
+});
+
+// 4. Magnetic Tools Effect
+const magneticTools = document.querySelectorAll(
+	".board-tool img, .board-bubble",
+);
+
+magneticTools.forEach(el => {
+	// Attach listener to the parent container to create a larger "hitbox" for the magnet
+	const parent = el.closest(".board-tool") || el;
+
+	parent.addEventListener("mousemove", e => {
+		const rect = parent.getBoundingClientRect();
+		// Calculate distance from the center of the tool
+		const pullX = (e.clientX - rect.left - rect.width / 2) * 0.5;
+		const pullY = (e.clientY - rect.top - rect.height / 2) * 0.5;
+
+		// Magnetically pull the graphic towards the mouse
+		gsap.to(el, { x: pullX, y: pullY, duration: 0.3, ease: "power2.out" });
 	});
 
-	if (lightbox) {
-		lightboxClose?.addEventListener("click", e => {
-			e.stopPropagation();
-			lightbox.classList.remove("is-open");
-		});
-		lightbox.addEventListener("click", e => {
-			if (e.target === lightbox) lightbox.classList.remove("is-open");
-		});
-		window.addEventListener("keydown", e => {
-			if (e.key === "Escape") lightbox.classList.remove("is-open");
-		});
-	}
-
-	// 2. Smooth Parallax Glide as cards pass over "Selected work"
-	function updateStreamParallax() {
-		const viewCenter = window.innerHeight / 2;
-
-		items.forEach(item => {
-			const rect = item.getBoundingClientRect();
-			// Only animate items near or inside the viewport
-			if (rect.bottom < -200 || rect.top > window.innerHeight + 200)
-				return;
-
-			const speed = parseFloat(item.getAttribute("data-speed") || "0.05");
-			const itemCenter = rect.top + rect.height / 2;
-			const offset = (itemCenter - viewCenter) * speed;
-
-			item.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
-		});
-	}
-
-	window.addEventListener("scroll", updateStreamParallax, { passive: true });
-	window.addEventListener("resize", updateStreamParallax);
-	updateStreamParallax();
+	parent.addEventListener("mouseleave", () => {
+		// Spring back into place when mouse leaves
+		gsap.to(el, { x: 0, y: 0, duration: 0.9, ease: "elastic.out(1, 0.3)" });
+	});
 });
