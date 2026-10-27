@@ -12,7 +12,7 @@ const IMG_DATA = {
 	five: "images/five.jpg",
 	six: "images/six.jpg",
 	seven: "images/seven.jpg",
-	tattoo: "images/eryx.png",
+	tattoo: "images/Eryx.png",
 	ronaldo: "images/ronaldo.jpg",
 };
 document.querySelectorAll("img[data-key]").forEach(img => {
