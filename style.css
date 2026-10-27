@@ -3830,7 +3830,7 @@ main,
 	justify-content: center;
 	gap: clamp(14px, 2.2vw, 36px);
 	font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-	font-weight: 800;
+	font-weight: 500;
 	font-size: clamp(46px, 11.2vw, 180px);
 	line-height: 0.92;
 	letter-spacing: -0.055em;
