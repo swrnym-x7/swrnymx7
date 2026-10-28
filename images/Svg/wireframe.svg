@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" width="300px" height="224px" overflow="visible" style="display: block;" viewBox="0 0 214 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Wiframe">
+<rect id="Rectangle 189" x="0.5" y="0.5" width="213" height="159" rx="7.5" fill="var(--fill-0, white)" stroke="var(--stroke-0, #D2D2D2)"/>
+<path id="Rectangle 190" d="M8 0.5H206C210.142 0.500002 213.5 3.85787 213.5 8V21.5H0.5V8C0.5 3.85786 3.85786 0.5 8 0.5Z" fill="var(--fill-0, #1D1D1F)" fill-opacity="0.03" stroke="var(--stroke-0, #D2D2D2)"/>
+<circle id="Ellipse 8" cx="14.5" cy="11.5" r="3" stroke="var(--stroke-0, #D2D2D2)"/>
+<circle id="Ellipse 11" cx="27" cy="58" r="16" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<circle id="Ellipse 9" cx="24.5" cy="11.5" r="3" stroke="var(--stroke-0, #D2D2D2)"/>
+<circle id="Ellipse 10" cx="34.5" cy="11.5" r="3" stroke="var(--stroke-0, #D2D2D2)"/>
+<rect id="Rectangle 191" x="11" y="80" width="48" height="6" rx="3" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<rect id="Rectangle 192" x="11" y="92" width="32" height="6" rx="3" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<rect id="Rectangle 193" x="11" y="104" width="42" height="6" rx="3" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<rect id="Rectangle 194" x="77" y="42" width="42" height="50" rx="4" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<rect id="Rectangle 196" x="77" y="98" width="42" height="50" rx="4" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<rect id="Rectangle 195" x="127" y="42" width="74" height="32" rx="4" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+<rect id="Rectangle 197" x="127" y="80" width="74" height="68" rx="4" fill="var(--fill-0, #D9D9D9)" fill-opacity="0.5"/>
+</g>
+</svg>

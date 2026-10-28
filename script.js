@@ -1270,3 +1270,100 @@ magneticTools.forEach(el => {
 		gsap.to(el, { x: 0, y: 0, duration: 0.9, ease: "elastic.out(1, 0.3)" });
 	});
 });
+/* =========================================
+   TEXT SCRUB REVEALS (ABOUT & WORK SECTIONS)
+   ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+	if (typeof SplitType !== "undefined" && typeof gsap !== "undefined") {
+		// -----------------------------------------
+		// 1. ABOUT SECTION REVEAL
+		// -----------------------------------------
+		const paragraphs = document.querySelectorAll(".about-copy p");
+		const splitAbout = new SplitType(paragraphs, {
+			types: "words, chars",
+			wordClass: "about-word",
+		});
+
+		gsap.set(splitAbout.chars, { opacity: 0.15 });
+		gsap.to(splitAbout.chars, {
+			opacity: 1,
+			stagger: 0.05,
+			ease: "none",
+			scrollTrigger: {
+				trigger: ".about-copy",
+				start: "top 85%", // Starts lighting up slightly earlier
+				end: "top 30%", // Finishes completely when the top of the section reaches 30% of the screen
+				scrub: true,
+			},
+		});
+
+		// -----------------------------------------
+		// 2. SELECTED WORK TITLE REVEAL
+		// -----------------------------------------
+		const workTextSpans = document.querySelectorAll(
+			".estrada-giant-title > span:not(.estrada-center-pill)",
+		);
+
+		const splitWork = new SplitType(workTextSpans, {
+			types: "words, chars",
+			wordClass: "work-word",
+		});
+
+		gsap.set(splitWork.chars, { opacity: 0.15 });
+		gsap.to(splitWork.chars, {
+			opacity: 1,
+			stagger: 0.05,
+			ease: "none",
+			scrollTrigger: {
+				trigger: "#work",
+				start: "top 75%",
+				end: "top 35%",
+				scrub: true,
+			},
+		});
+	}
+});
+// -----------------------------------------
+// 2. SELECTED WORK TITLE (Entry & Exit)
+// -----------------------------------------
+
+// ENTRY: Glides in from the right to the center
+gsap.fromTo(
+	".estrada-giant-title",
+	{
+		x: "100vw",
+		opacity: 0,
+	},
+	{
+		x: "0vw", // Snaps perfectly to the center
+		opacity: 1, // Fully visible
+		scrollTrigger: {
+			trigger: "#work",
+			start: "top 85%",
+			end: "top 25%",
+			scrub: 1.5,
+		},
+	},
+);
+
+// EXIT: Glides from the center out to the left
+gsap.fromTo(
+	".estrada-giant-title",
+	{
+		x: "0vw",
+		opacity: 1,
+	},
+	{
+		x: "-100vw",
+		opacity: 0,
+		ease: "power2.in",
+		scrollTrigger: {
+			trigger: ".estrada-work-item:last-child",
+			// FIRE EARLIER: Starts as soon as the top of the last image reaches 60% of the screen
+			start: "top 60%",
+			// Finishes as the image reaches the upper half
+			end: "bottom 40%",
+			scrub: 1.5,
+		},
+	},
+);

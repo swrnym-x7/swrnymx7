@@ -157,7 +157,14 @@
             <img src="images/eye sticker.png" alt="Creative Eye" style="width: 100%; height: auto; filter: drop-shadow(0px 12px 24px rgba(0,0,0,0.15));">
         </div>
     </div>
+<!-- Floating UI Wireframes -->
+        <div class="board-tool bg-wireframe wireframe-1" data-depth="15">
+            <img src="images/Svg/wireframe.svg" alt="UI Wireframe">
+        </div>
 
+        <div class="board-tool bg-wireframe wireframe-2" data-depth="-20">
+            <img src="images/Svg/wireframe2.svg" alt="Dashboard Wireframe">
+        </div>
     <!-- Centered Main Text -->
     <!-- Centered Main Text -->
     <div class="hero-inner">
@@ -597,21 +604,21 @@ Designed graphics and promotional materials for events and workshops, strengthen
     <polyline points="5 12 12 5 19 12"></polyline>
   </svg>
 </a> Floating Back to Top Button -->
-		<script src="script.js"></script>
-		<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script> 
-		<script>
-			// Initialize Lenis
-const lenis = new Lenis({
-	lerp: 0.1,
-  autoRaf: true,
-});
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- 2. SplitType for safe text revealing -->
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+    
+    <!-- 3. Lenis Smooth Scroller -->
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script> 
+    <script>
+        const lenis = new Lenis({
+            lerp: 0.1,
+            autoRaf: true,
+        });
+    </script>
 
-// Listen for the scroll event and log the event data
-lenis.on('scroll', (e) => {
-  console.log(e);
-});
-		</script>
-	<!-- GSAP Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-	</body>
+    <!-- 4. YOUR SCRIPT MUST BE LAST -->
+    <script src="script.js"></script>
 </html>
