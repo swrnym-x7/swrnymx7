@@ -1367,3 +1367,31 @@ gsap.fromTo(
 		},
 	},
 );
+// -----------------------------------------
+// 4. WORK LIGHTBOX PREVIEW (Click to Expand)
+// -----------------------------------------
+const lightbox = document.getElementById("workLightbox");
+const lightboxImg = document.getElementById("workLightboxImg");
+const lightboxClose = document.getElementById("workLightboxClose");
+
+if (lightbox && lightboxImg) {
+	// Open lightbox when clicking any work item
+	document.querySelectorAll(".estrada-work-item img").forEach(img => {
+		img.addEventListener("click", () => {
+			lightboxImg.src = img.src;
+			lightbox.classList.add("is-open");
+		});
+	});
+
+	// Close when clicking the close button
+	lightboxClose?.addEventListener("click", () => {
+		lightbox.classList.remove("is-open");
+	});
+
+	// Close when clicking anywhere outside the image
+	lightbox.addEventListener("click", e => {
+		if (e.target === lightbox) {
+			lightbox.classList.remove("is-open");
+		}
+	});
+}
