@@ -1277,7 +1277,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (typeof SplitType !== "undefined" && typeof gsap !== "undefined") {
 		// -----------------------------------------
 		// -----------------------------------------
-		// 2. ABOUT SECTION PARAGRAPHS (Responsive Letter Scrub)
+		// -----------------------------------------
+		// 2. ABOUT SECTION PARAGRAPHS (Perfect Mobile Reading Line)
 		// -----------------------------------------
 		const aboutParagraphs = document.querySelectorAll(".about-copy p");
 
@@ -1292,12 +1293,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			gsap.to(splitAbout.chars, {
 				opacity: 1,
-				stagger: 0.05,
+				stagger: 0.1, // Slightly higher stagger makes the characters pop cleaner
 				ease: "none",
 				scrollTrigger: {
-					trigger: para, // Anchors to each paragraph individually
-					start: "top 90%", // Starts slightly lower on the screen (perfect for mobile)
-					end: "top 50%", // Fully visible by the time it hits the middle
+					trigger: para,
+					// Creates an invisible reading line at 80% down the screen
+					start: "top 80%",
+					// Finishes exactly when the bottom of the paragraph passes that same line
+					end: "bottom 80%",
 					scrub: true,
 				},
 			});
