@@ -1535,3 +1535,53 @@ if (contactSection) {
 			"-=0.6",
 		);
 }
+// -----------------------------------------
+// 10. DESIGN TOKENS (3D Tilt & Reveal)
+// -----------------------------------------
+const tokenCard = document.querySelector("#canvasBox");
+
+if (tokenCard) {
+	// A. SCROLL REVEAL: Stagger the colors and text inside the card
+	gsap.fromTo(
+		tokenCard.querySelectorAll(".swatch, .font-row"),
+		{ opacity: 0, y: 20 },
+		{
+			opacity: 1,
+			y: 0,
+			duration: 0.8,
+			stagger: 0.1,
+			ease: "back.out(1.2)",
+			scrollTrigger: {
+				trigger: tokenCard,
+				start: "top 85%",
+				toggleActions: "play none none reverse",
+			},
+		},
+	);
+
+	// B. 3D HOVER TILT: Makes the card follow your cursor
+	tokenCard.addEventListener("mousemove", e => {
+		const rect = tokenCard.getBoundingClientRect();
+
+		const x = e.clientX - rect.left - rect.width / 2;
+		const y = e.clientY - rect.top - rect.height / 2;
+
+		gsap.to(tokenCard, {
+			rotationY: (x / rect.width) * 15,
+			rotationX: (y / rect.height) * -15,
+			transformPerspective: 1000,
+			duration: 0.5,
+			ease: "power2.out",
+		});
+	});
+
+	// Snap back to perfectly flat when the mouse leaves
+	tokenCard.addEventListener("mouseleave", () => {
+		gsap.to(tokenCard, {
+			rotationY: 0,
+			rotationX: 0,
+			duration: 1.2,
+			ease: "elastic.out(1, 0.3)",
+		});
+	});
+}

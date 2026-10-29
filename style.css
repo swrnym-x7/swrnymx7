@@ -4538,3 +4538,25 @@ h1.massive-text {
 	display: inline-block;
 	will-change: transform; /* Optimizes the browser for physics animations */
 }
+/* Gives the main card a premium, floating feel when hovered */
+.canvas-selection-box {
+	transition: box-shadow 0.4s ease;
+}
+
+.canvas-selection-box:hover {
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* The elastic spring hover for your color palette swatches */
+.swatch {
+	transition:
+		transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 0.4s ease;
+	cursor: pointer;
+	will-change: transform;
+}
+
+.swatch:hover {
+	transform: translateY(-8px) scale(1.1);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
