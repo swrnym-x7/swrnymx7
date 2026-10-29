@@ -1276,25 +1276,31 @@ magneticTools.forEach(el => {
 document.addEventListener("DOMContentLoaded", () => {
 	if (typeof SplitType !== "undefined" && typeof gsap !== "undefined") {
 		// -----------------------------------------
-		// 1. ABOUT SECTION REVEAL
 		// -----------------------------------------
-		const paragraphs = document.querySelectorAll(".about-copy p");
-		const splitAbout = new SplitType(paragraphs, {
-			types: "words, chars",
-			wordClass: "about-word",
-		});
+		// 2. ABOUT SECTION PARAGRAPHS (Responsive Letter Scrub)
+		// -----------------------------------------
+		const aboutParagraphs = document.querySelectorAll(".about-copy p");
 
-		gsap.set(splitAbout.chars, { opacity: 0.15 });
-		gsap.to(splitAbout.chars, {
-			opacity: 1,
-			stagger: 0.05,
-			ease: "none",
-			scrollTrigger: {
-				trigger: ".about-copy",
-				start: "top 85%", // Starts lighting up slightly earlier
-				end: "top 30%", // Finishes completely when the top of the section reaches 30% of the screen
-				scrub: true,
-			},
+		aboutParagraphs.forEach(para => {
+			const splitAbout = new SplitType(para, {
+				types: "words, chars",
+				wordClass: "about-word",
+			});
+
+			// Start dim
+			gsap.set(splitAbout.chars, { opacity: 0.15 });
+
+			gsap.to(splitAbout.chars, {
+				opacity: 1,
+				stagger: 0.05,
+				ease: "none",
+				scrollTrigger: {
+					trigger: para, // Anchors to each paragraph individually
+					start: "top 90%", // Starts slightly lower on the screen (perfect for mobile)
+					end: "top 50%", // Fully visible by the time it hits the middle
+					scrub: true,
+				},
+			});
 		});
 
 		// -----------------------------------------
@@ -1394,4 +1400,135 @@ if (lightbox && lightboxImg) {
 			lightbox.classList.remove("is-open");
 		}
 	});
+}
+// -----------------------------------------
+// 5. EXPERIENCE TIMELINE (Staggered Reveal)
+// -----------------------------------------
+const ecItems = document.querySelectorAll(".ec-item");
+
+ecItems.forEach(item => {
+	// Animates the date, then title, then description in sequence
+	gsap.fromTo(
+		item.children,
+		{
+			opacity: 0,
+			y: 20,
+		},
+		{
+			opacity: 1,
+			y: 0,
+			duration: 0.8,
+			stagger: 0.15, // The delay between each element popping in
+			ease: "power2.out",
+			scrollTrigger: {
+				trigger: item,
+				start: "top 85%",
+				toggleActions: "play none none reverse",
+			},
+		},
+	);
+});
+
+// -----------------------------------------
+// 6. TIMELINE GLOW BAR (Scroll Sync)
+// -----------------------------------------
+const glowBar = document.querySelector(".glow-bar");
+if (glowBar) {
+	gsap.fromTo(
+		glowBar,
+		{ scaleY: 0, transformOrigin: "top center" },
+		{
+			scaleY: 1,
+			ease: "none",
+			scrollTrigger: {
+				trigger: ".ec-timeline",
+				start: "top 60%",
+				end: "bottom 60%",
+				scrub: true,
+			},
+		},
+	);
+}
+
+// -----------------------------------------
+// 7. CONTACT SECTION (Awwwards Cinematic Slam)
+// -----------------------------------------
+const contactSection = document.querySelector("#contact");
+
+if (contactSection) {
+	// Create a synchronized timeline that fires exactly when the section enters
+	// Create a synchronized timeline that fires exactly when the section enters
+	const contactTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: contactSection,
+
+			// Trigger it slightly later so it's easier to cross the line when scrolling back up
+			start: "top 80%",
+
+			// THE FIX:
+			// 'restart' = play from the beginning when scrolling down
+			// 'reset' = instantly snap back to invisible when scrolling up
+			toggleActions: "restart none none reset",
+		},
+	});
+
+	// 1. Giant Ampersand punches in and twists into place
+	contactTl
+		.fromTo(
+			".footer-watermark",
+			{ scale: 2.5, opacity: 0, rotation: 30 },
+			{
+				scale: 1,
+				opacity: 0.03,
+				rotation: 0,
+				duration: 1.5,
+				ease: "expo.out",
+			},
+		)
+
+		// 2. The entire form and heading slam up from a heavy blur
+		.fromTo(
+			".contact-cta-container",
+			{ y: 150, opacity: 0, scale: 0.8, filter: "blur(20px)" },
+			{
+				y: 0,
+				opacity: 1,
+				scale: 1,
+				filter: "blur(0px)",
+				duration: 1.2,
+				ease: "back.out(1.2)",
+			},
+			"-=1.2", // Overlaps with the ampersand for maximum impact
+		)
+
+		// 3. Inputs slice together from alternating sides (left, right, left)
+		.fromTo(
+			".input-group, .send-btn",
+			{
+				x: index => (index % 2 === 0 ? -100 : 100), // Evens come from left, odds from right
+				opacity: 0,
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 1,
+				stagger: 0.1,
+				ease: "power4.out",
+			},
+			"-=0.8",
+		)
+
+		// 4. Social links pop up at the very end
+		.fromTo(
+			".social-links-row a",
+			{ y: 20, opacity: 0 },
+			{
+				y: 0,
+				opacity: 1,
+				duration: 0.6,
+				stagger: 0.1,
+				ease: "power2.out",
+			},
+			"-=0.6",
+		);
 }

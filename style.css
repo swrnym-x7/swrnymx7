@@ -4502,3 +4502,39 @@ h1.massive-text {
 	display: inline-block;
 	will-change: opacity;
 }
+/* Ensure the section clips the massive character if it overflows */
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* The giant background ampersand */
+.footer-watermark {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Use your specific accent font here */
+    font-family: 'Fraunces', Georgia, serif; 
+    font-style: italic;
+    
+    font-size: 45vw; /* Massive scale for a single character */
+    font-weight: 300; /* Thinner weights usually look more premium at this scale */
+    color: #000; 
+    opacity: 0.03; /* Barely visible */
+    pointer-events: none; 
+    z-index: 0; 
+    line-height: 0.8; /* Keeps the character's bounding box tight so it centers perfectly */
+}
+
+/* Ensure the main form content sits on top */
+.contact-cta-container {
+    position: relative;
+    z-index: 10;
+}
+.send-btn, 
+.social-links-row a {
+    display: inline-block;
+    will-change: transform; /* Optimizes the browser for physics animations */
+}
