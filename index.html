@@ -424,78 +424,108 @@
 
 
 <section id="education-certification">
+    <!-- The restored section header -->
     <div class="section-head reveal">
         <h2 class="cursor-target">Education & Experience</h2>
         <span class="count">(03)</span>
     </div>
-    <div class="education-certification reveal">
 
-    <div class="ec-timeline">
-      <div class="glow-bar">
-        <div class="glow-head"></div>
-      </div>
-
-      <div class="ec-item">
-        <div class="ec-date">2022 — 2026</div>
-        <div class="ec-content">
-          <h3>Diploma in Computer Engineering</h3>
-          <p class="ec-institution">Shree Pokhariya Secondary School</p>
-          <p class="ec-description">Built a strong foundation in software development and computer engineering, with a particular focus on Web Development, Database Management, Visual Programming, UI/UX Design, and Application Development.</p>
+    <!-- The new sticky timeline wrapped in a grid container -->
+    <div class="split-experience-grid">
+        
+        <!-- LEFT COLUMN: Sticky Info Panel -->
+        <div class="exp-left">
+            <div class="exp-sticky-content">
+                <span class="exp-eyebrow"><span class="dot"></span> My story</span>
+                <h2 class="exp-headline">Let's go back in time.</h2>
+                
+                <div class="exp-giant-year" id="activeYear">2026</div>
+                <div class="exp-date-range" id="activeDateRange">JAN 2026 — PRESENT</div>
+                
+                <div class="exp-progress">
+                    <div class="exp-counter">
+                        <span id="activeCount">01</span> / <span class="exp-total">05</span>
+                    </div>
+                    <div class="exp-progress-bar">
+                        <div class="exp-progress-fill" id="activeProgress" style="width: 20%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="ec-item">
-        <div class="ec-date">2023</div>
-        <div class="ec-content">
-          <h3>On-The-Job Trainning</h3>
-          <p class="ec-institution">Asian Computers and Tech</p>
-          <p class="ec-description">Worked as an intern, gaining hands-on experience with computer hardware by building, assembling, and troubleshooting computer systems.
-</p>
+        <!-- RIGHT COLUMN: Scrolling Timeline -->
+        <div class="exp-right">
+            <div class="exp-timeline" id="expTimeline">
+                <div class="exp-line"></div>
+
+                <!-- Item 01 -->
+                <div class="exp-item cursor-target" data-year="2026" data-date="JAN 2026 — PRESENT" data-index="1">
+                    <div class="exp-node"></div>
+                    <div class="exp-item-date">2026</div>
+                    <h3 class="exp-item-title">UI/UX Design Intern</h3>
+                    <p class="exp-item-company">College of Software Engineering</p>
+                    <ul class="exp-item-bullets">
+                        <li>Designed and developed multiple websites and digital interfaces for clients.</li>
+                        <li>Created a comprehensive school management system focused on intuitive user flows.</li>
+                    </ul>
+                </div>
+
+                <!-- Item 02 -->
+                <div class="exp-item cursor-target" data-year="2025" data-date="JAN 2025 — DEC 2025" data-index="2">
+                    <div class="exp-node"></div>
+                    <div class="exp-item-date">2025</div>
+                    <h3 class="exp-item-title">Founding Member / Graphics Designer</h3>
+                    <p class="exp-item-company">IT Club Pokhariya</p>
+                    <ul class="exp-item-bullets">
+                        <li>Played a key role in establishing the club and shaping its visual direction.</li>
+                        <li>Designed promotional materials for events and workshops to strengthen community engagement.</li>
+                    </ul>
+                </div>
+
+                <!-- Item 03 -->
+                <div class="exp-item cursor-target" data-year="2024" data-date="JAN 2024 — DEC 2024" data-index="3">
+                    <div class="exp-node"></div>
+                    <div class="exp-item-date">2024</div>
+                    <h3 class="exp-item-title">Senior Graphics Designer</h3>
+                    <p class="exp-item-company">BrandwaveNP</p>
+                    <ul class="exp-item-bullets">
+                        <li>Managed brand visual identity and social media graphics for multiple clients.</li>
+                        <li>Produced marketing materials and maintained consistent brand guidelines across platforms.</li>
+                    </ul>
+                </div>
+
+                <!-- Item 04 -->
+                <div class="exp-item cursor-target" data-year="2023" data-date="JAN 2023 — DEC 2023" data-index="4">
+                    <div class="exp-node"></div>
+                    <div class="exp-item-date">2023</div>
+                    <h3 class="exp-item-title">Hardware & Support Intern</h3>
+                    <p class="exp-item-company">Asian Computers and Tech</p>
+                    <ul class="exp-item-bullets">
+                        <li>Gained hands-on experience building and assembling computer systems.</li>
+                        <li>Provided direct troubleshooting and hardware support for technical issues.</li>
+                    </ul>
+                </div>
+
+                <!-- Item 05 -->
+                <div class="exp-item cursor-target" data-year="2022" data-date="2022 — 2026" data-index="5">
+                    <div class="exp-node"></div>
+                    <div class="exp-item-date">2022 — 2026</div>
+                    <h3 class="exp-item-title">Diploma in Computer Engineering</h3>
+                    <p class="exp-item-company">Shree Pokhariya Secondary School</p>
+                    <ul class="exp-item-bullets">
+                        <li>Built a strong foundation in software development and visual programming.</li>
+                        <li>Specialized focus on Web Development, Database Management, and UI/UX Design.</li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-      </div>
-
-	  <div class="ec-item">
-        <div class="ec-date">2024</div>
-        <div class="ec-content">
-          <h3>Graphics Designer</h3>
-          <p class="ec-institution">BrandwaveNP</p>
-          <p class="ec-description">Worked as Senior graphics desiner on a startup company at the age of 15 building and managing brands and their visual identity handeling social media graphics and marketing materials for clients.
-</p>
-        </div>
-      </div>
-
-	    <div class="ec-item">
-        <div class="ec-date">2025</div>
-        <div class="ec-content">
-          <h3>Founding Member / Graphics Designer</h3>
-          <p class="ec-institution">IT Club Pokhariya</p>
-          <p class="ec-description">Played a key role in establishing IT Club Pokhariya, shaping its vision and direction.
-Designed graphics and promotional materials for events and workshops, strengthening the club’s visual identity and community engagement.
-
-</p>
-        </div>
-      </div>
-
-      <div class="ec-item">
-        <div class="ec-date">2026</div>
-        <div class="ec-content">
-          <h3>On-The-Job Trainning</h3>
-          <p class="ec-institution">Collage of software Engineering</p>
-          <p class="ec-description">Worked as a Software Design Intern in the role of a UI/UX Designer, where I designed and developed multiple websites for clients, as well as a school management system.
-</p>
-
-
-          
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 <hr>
 
 <section id="contact" class="light-contact-section">
  <!-- Giant Background Watermark -->
-  <div class="footer-watermark">&amp;</div>
   <div class="contact-cta-container">
 	<span class="sub-label">ㅤㅤㅤㅤㅤ</span>
 	<span class="sub-label">ㅤㅤㅤㅤㅤ</span>

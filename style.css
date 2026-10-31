@@ -4538,3 +4538,239 @@ h1.massive-text {
 	display: inline-block;
 	will-change: transform; /* Optimizes the browser for physics animations */
 }
+/* =========================================
+   EDUCATION & EXPERIENCE (Split Sticky Layout)
+   ========================================= */
+
+.split-experience-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 60px;
+	max-width: 1300px;
+	margin: 0 auto;
+	align-items: start;
+	padding-top: 40px; /* Space under the section header */
+}
+
+/* --- LEFT COLUMN: Sticky Info Panel --- */
+.exp-left {
+	position: sticky;
+	top: 25vh; /* Locks it to the upper-middle of the screen */
+}
+
+.exp-eyebrow {
+	font-family: "Inter", sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.15em;
+	color: #4f5870;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 20px;
+}
+
+.exp-eyebrow .dot {
+	width: 6px;
+	height: 6px;
+	background-color: var(--amber-500);
+	border-radius: 50%;
+}
+
+.exp-headline {
+	font-size: 2.2rem;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	color: #111;
+	margin-bottom: 12px;
+}
+
+/* ODOMETER STYLES (The Giant Year) */
+.exp-giant-year {
+	font-size: clamp(80px, 9vw, 160px);
+	font-weight: 700;
+	line-height: 1; /* Relaxed from 0.9 for better vertical breathing room */
+	letter-spacing: 0; /* Removed the tight -0.04em */
+	color: #111;
+	margin-bottom: 16px;
+	font-family: "Helvetica Neue", sans-serif;
+	display: flex;
+	align-items: flex-start;
+	gap: 4px; /* Adds explicit physical space between each number */
+}
+
+.digit-window {
+	display: inline-block;
+	height: 1em; /* Matches the new relaxed line-height */
+	padding: 0 4px; /* THE FIX: Adds padding inside the window so curved edges don't clip */
+	overflow: hidden;
+}
+
+.digit-strip {
+	display: flex;
+	flex-direction: column;
+}
+
+.digit-strip span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 1em; /* Must exactly match the digit-window height */
+	line-height: 1;
+}
+
+/* Progress & Meta Info */
+.exp-date-range {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	letter-spacing: 0.1em;
+	color: #777;
+	margin-bottom: 40px;
+}
+
+.exp-progress {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.exp-counter {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #111;
+}
+
+.exp-counter .exp-total {
+	color: #888;
+}
+
+.exp-progress-bar {
+	flex: 1;
+	max-width: 140px;
+	height: 2px;
+	background: rgba(0, 0, 0, 0.1);
+	position: relative;
+}
+
+.exp-progress-fill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background: var(--amber-500);
+	transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- RIGHT COLUMN: Scrolling Timeline --- */
+.exp-timeline {
+	position: relative;
+	padding-left: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.exp-line {
+	position: absolute;
+	top: 10px;
+	bottom: 0;
+	left: 0;
+	width: 1px;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.exp-item {
+	position: relative;
+	opacity: 0.4; /* Dim by default */
+	transition: opacity 0.4s ease;
+}
+
+.exp-item.is-active {
+	opacity: 1; /* Highlights when scrolled into view */
+}
+
+/* Timeline Node/Dot */
+.exp-node {
+	position: absolute;
+	left: -44.5px; /* Centers the dot precisely on the track line */
+	top: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--graphite-950);
+	border: 2px solid rgba(0, 0, 0, 0.2);
+	transition: all 0.4s ease;
+}
+
+.exp-item.is-active .exp-node {
+	border-color: var(--amber-500);
+	background: var(--amber-500);
+	box-shadow: 0 0 12px rgba(118, 86, 238, 0.4);
+}
+
+/* Content Formatting */
+.exp-item-date {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	letter-spacing: 0.1em;
+	color: #777;
+	margin-bottom: 12px;
+}
+
+.exp-item-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: #111;
+	margin-bottom: 4px;
+}
+
+.exp-item-company {
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: var(--amber-500);
+	margin-bottom: 16px;
+}
+
+.exp-item-bullets {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.exp-item-bullets li {
+	position: relative;
+	padding-left: 20px;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	color: #444;
+}
+
+.exp-item-bullets li::before {
+	content: "—";
+	position: absolute;
+	left: 0;
+	color: #999;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 960px) {
+	.split-experience-grid {
+		grid-template-columns: 1fr;
+		gap: 40px;
+		padding-top: 24px;
+	}
+
+	.exp-left {
+		position: relative; /* Un-sticks on mobile so you can scroll past it */
+		top: 0;
+	}
+
+	.exp-giant-year {
+		font-size: 80px;
+	}
+}

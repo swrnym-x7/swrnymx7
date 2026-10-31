@@ -1454,88 +1454,6 @@ if (glowBar) {
 }
 
 // -----------------------------------------
-// 7. CONTACT SECTION (Awwwards Cinematic Slam)
-// -----------------------------------------
-const contactSection = document.querySelector("#contact");
-
-if (contactSection) {
-	// Create a synchronized timeline that fires exactly when the section enters
-	// Create a synchronized timeline that fires exactly when the section enters
-	const contactTl = gsap.timeline({
-		scrollTrigger: {
-			trigger: contactSection,
-
-			// Trigger it slightly later so it's easier to cross the line when scrolling back up
-			start: "top 80%",
-
-			// THE FIX:
-			// 'restart' = play from the beginning when scrolling down
-			// 'reset' = instantly snap back to invisible when scrolling up
-			toggleActions: "restart none none reset",
-		},
-	});
-
-	// 1. Giant Ampersand punches in and twists into place
-	contactTl
-		.fromTo(
-			".footer-watermark",
-			{ scale: 2.5, opacity: 0, rotation: 30 },
-			{
-				scale: 1,
-				opacity: 0.03,
-				rotation: 0,
-				duration: 1.5,
-				ease: "expo.out",
-			},
-		)
-
-		// 2. The entire form and heading slam up from a heavy blur
-		.fromTo(
-			".contact-cta-container",
-			{ y: 150, opacity: 0, scale: 0.8, filter: "blur(20px)" },
-			{
-				y: 0,
-				opacity: 1,
-				scale: 1,
-				filter: "blur(0px)",
-				duration: 1.2,
-				ease: "back.out(1.2)",
-			},
-			"-=1.2", // Overlaps with the ampersand for maximum impact
-		)
-
-		// 3. Inputs slice together from alternating sides (left, right, left)
-		.fromTo(
-			".input-group, .send-btn",
-			{
-				x: index => (index % 2 === 0 ? -100 : 100), // Evens come from left, odds from right
-				opacity: 0,
-			},
-			{
-				x: 0,
-				opacity: 1,
-				duration: 1,
-				stagger: 0.1,
-				ease: "power4.out",
-			},
-			"-=0.8",
-		)
-
-		// 4. Social links pop up at the very end
-		.fromTo(
-			".social-links-row a",
-			{ y: 20, opacity: 0 },
-			{
-				y: 0,
-				opacity: 1,
-				duration: 0.6,
-				stagger: 0.1,
-				ease: "power2.out",
-			},
-			"-=0.6",
-		);
-}
-// -----------------------------------------
 // 10. DESIGN TOKENS (3D Tilt & Reveal)
 // -----------------------------------------
 const tokenCard = document.querySelector("#canvasBox");
@@ -1584,4 +1502,84 @@ if (tokenCard) {
 			ease: "elastic.out(1, 0.3)",
 		});
 	});
+}
+// --- 6. SPLIT EXPERIENCE TIMELINE SYNCHRONIZATION (Mechanical Odometer) ---
+const expItems = document.querySelectorAll(".exp-item");
+const activeYearEl = document.getElementById("activeYear");
+const activeDateRangeEl = document.getElementById("activeDateRange");
+const activeCountEl = document.getElementById("activeCount");
+const activeProgressEl = document.getElementById("activeProgress");
+
+if (expItems.length > 0 && activeYearEl) {
+	// 1. Build the physical scrolling strips (0-9) for each digit
+	const currentYear = activeYearEl.textContent.trim();
+	activeYearEl.innerHTML = "";
+
+	currentYear.split("").forEach(char => {
+		const windowEl = document.createElement("span");
+		windowEl.className = "digit-window";
+		windowEl.setAttribute("data-val", char);
+
+		const stripEl = document.createElement("span");
+		stripEl.className = "digit-strip";
+
+		// Build the vertical column of numbers 0 through 9
+		for (let i = 0; i <= 9; i++) {
+			const num = document.createElement("span");
+			num.textContent = i;
+			stripEl.appendChild(num);
+		}
+
+		// Jump strip to the initial correct starting number on load
+		gsap.set(stripEl, { yPercent: -parseInt(char) * 10 });
+		windowEl.appendChild(stripEl);
+		activeYearEl.appendChild(windowEl);
+	});
+
+	expItems.forEach(item => {
+		ScrollTrigger.create({
+			trigger: item,
+			start: "top 60%",
+			end: "bottom 40%",
+			onToggle: self => {
+				if (self.isActive) updateStickyInfo(item);
+			},
+		});
+	});
+
+	function updateStickyInfo(activeItem) {
+		expItems.forEach(el => el.classList.remove("is-active"));
+		activeItem.classList.add("is-active");
+
+		const year = activeItem.getAttribute("data-year");
+		const date = activeItem.getAttribute("data-date");
+		const index = activeItem.getAttribute("data-index");
+		const total = expItems.length;
+
+		// 2. Odometer Logic: Scroll the strip to the new number
+		const windows = activeYearEl.querySelectorAll(".digit-window");
+		const newDigits = year.split("");
+
+		windows.forEach((win, i) => {
+			const currentVal = win.getAttribute("data-val");
+			const newVal = newDigits[i];
+
+			if (currentVal !== newVal) {
+				win.setAttribute("data-val", newVal);
+				const strip = win.querySelector(".digit-strip");
+
+				// Kill any mid-scroll glitches and physically roll to the new number
+				gsap.killTweensOf(strip);
+				gsap.to(strip, {
+					yPercent: -parseInt(newVal) * 10,
+					duration: 0.6,
+					ease: "power2.out", // Silky smooth deceleration
+				});
+			}
+		});
+
+		activeDateRangeEl.textContent = date;
+		activeCountEl.textContent = String(index).padStart(2, "0");
+		activeProgressEl.style.width = `${(index / total) * 100}%`;
+	}
 }
