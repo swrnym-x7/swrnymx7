@@ -4760,17 +4760,41 @@ h1.massive-text {
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 960px) {
 	.split-experience-grid {
-		grid-template-columns: 1fr;
-		gap: 40px;
+		grid-template-columns: 1fr; /* Stacks the grid to 1 column */
+		gap: 20px;
 		padding-top: 24px;
 	}
 
 	.exp-left {
-		position: relative; /* Un-sticks on mobile so you can scroll past it */
-		top: 0;
+		position: sticky;
+		top: 68px; /* Sticks safely below your mobile header */
+		background: var(
+			--graphite-950
+		); /* Covers the timeline items as they scroll up */
+		padding: 16px 0;
+		z-index: 20;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Clean divider */
+	}
+
+	.exp-eyebrow {
+		margin-bottom: 8px;
+	}
+
+	.exp-headline {
+		font-size: 1.6rem; /* Shrunk so it doesn't eat the whole screen */
+		margin-bottom: 8px;
 	}
 
 	.exp-giant-year {
-		font-size: 80px;
+		font-size: 72px; /* Shrunk the odometer for mobile */
+		margin-bottom: 12px;
+	}
+
+	.exp-date-range {
+		margin-bottom: 16px;
+	}
+
+	.exp-right {
+		padding-top: 20px; /* Breathing room for the timeline */
 	}
 }
