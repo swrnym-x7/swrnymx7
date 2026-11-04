@@ -1318,11 +1318,13 @@ footer {
 	font-family: inherit;
 	font-size: 56px;
 	font-weight: 700;
-	line-height: 1.1;
-	letter-spacing: -1.5px;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
 	color: #111111;
-	margin: 0 0 32px 0;
+	margin: 0 auto 32px auto;
+	display: inline-block;
 }
+v
 
 /* Purple Pill Button with Soft Glow */
 .purple-btn {
@@ -4770,13 +4772,14 @@ h1.massive-text {
 
 	.exp-left {
 		position: sticky;
-		top: 68px; /* Sticks safely below your mobile header */
-		background: var(
-			--graphite-950
-		); /* Covers the timeline items as they scroll up */
-		padding: 16px 0;
+		top: 54px; /* Reduced from 68px to snap flush against the mobile header */
+		background: var(--graphite-950);
 		z-index: 20;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Clean divider */
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+		/* Pulls the solid background to the exact edges of your phone screen */
+		margin: 0 -24px;
+		padding: 16px 24px;
 	}
 
 	.exp-eyebrow {

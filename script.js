@@ -1583,3 +1583,57 @@ if (expItems.length > 0 && activeYearEl) {
 		activeProgressEl.style.width = `${(index / total) * 100}%`;
 	}
 }
+// Contact Section Graceful Reveal
+const contactSection = document.querySelector("#contact");
+if (contactSection) {
+	const contactTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: contactSection,
+			start: "top 75%",
+			toggleActions: "play none none reverse",
+		},
+	});
+
+	contactTl
+		.fromTo(
+			".sub-label",
+			{ opacity: 0, y: 15 },
+			{ opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+		)
+		.fromTo(
+			".cta-heading",
+			{ opacity: 0, y: 20 },
+			{ opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+			"-=0.3",
+		)
+		.fromTo(
+			".contact-body-text",
+			{ opacity: 0, y: 15 },
+			{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+			"-=0.5",
+		)
+		.fromTo(
+			".inline-contact-form",
+			{ opacity: 0, y: 25, scale: 0.98 },
+			{
+				opacity: 1,
+				y: 0,
+				scale: 1,
+				duration: 0.7,
+				ease: "back.out(1.2)",
+			},
+			"-=0.4",
+		)
+		.fromTo(
+			".social-links-row a",
+			{ opacity: 0, y: 10 },
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.4,
+				stagger: 0.1,
+				ease: "power2.out",
+			},
+			"-=0.4",
+		);
+}
